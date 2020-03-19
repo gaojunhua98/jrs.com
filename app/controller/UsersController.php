@@ -68,7 +68,7 @@ class UsersController extends BaseController
 			['user_name', '=', $user_name],
 			['user_pwd', '=', $user_pwd],
 		];
-        if($user = User::login($loginData))
+        if($user = User::getOneUser($loginData))
         {
 			//TODO 登陆操作
 			session('[start]');
