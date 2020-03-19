@@ -17,7 +17,8 @@ class UsersModel extends Model
         //TODO:初始化内容
     }
     
-    public static function login($loginData)
+
+    public static function getOneUser($loginData)
     {
     	return Db::name('users')->where($loginData)->find();
     }
