@@ -25,9 +25,12 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-            Session::set('user_name',$user['user_name']);
-            Session::set('user_nickname',$user['user_nickname']);
-            Cookie::set('user_name', $user['user_name'], 3600, "/", "127.0.0.1");
+			session('[start]');
+			session('user_name', $user['user_name']);
+            session('user_nickname', $user['user_nickname']);
+            session('[pause]');
+
+			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
 		return false;
@@ -40,9 +43,12 @@ class User
     {
         if(session('user_name') == $userName)
         {
-            Session::delete('user_name');
-            Session::delete('user_nickname');
-            Cookie::delete('user_name');
+            session('[start]');
+            session('user_name' , null);
+            session('user_nickname' , null);
+            session('[pause]');
+
+            cookie('user_name', null);
             return $user;
         }
 		return false;
@@ -53,9 +59,9 @@ class User
      */
     public static function isLogin()
     {
-        if(Session::get('user_name') == Cookie::get('user_name'))
+        if(session('user_name') == cookie('user_name'))
         {
-            Cookie::set('user_name', Cookie::get('user_name'), 3600, "/", "127.0.0.1");
+            cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return true;
         }
 		return false;
@@ -67,7 +73,7 @@ class User
     public function doGetLogUserInfo()
     {
         $where = [
-            ['user_name', '=', Session::get('user_name')]
+            ['user_name', '=', session('user_name')]
         ];
         $userInfo = UserInfoModel::findOne($where);
         if($userInfo)
