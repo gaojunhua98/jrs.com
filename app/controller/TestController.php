@@ -18,7 +18,7 @@ class TestController extends ControllerController
             'page' => $page,
             'pageNum' => $pageNum,
         ];
-        $res = User::getList([], $pageNum);
+        $res = User::getList([], $pageData);
 
 
         return  json([
