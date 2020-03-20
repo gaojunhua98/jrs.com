@@ -10,9 +10,9 @@ use think\facade\Db;
  */
 class UserModel extends Model
 {
-    protected $connection = 'mysql';
-    protected $name = 'user';
-    protected $pk = 'uid';
+    protected static $connection = 'mysql';
+    protected static $name = 'user';
+    protected static $pk = 'uid';
 
     // 模型初始化
     protected static function init()
@@ -29,25 +29,25 @@ class UserModel extends Model
     //根据条件查询多条
     public static function selectAny($where)
     {
-    	return Db::name($name)->where($where)->select()->toArray();
+    	return Db::name('user')->where($where)->select()->toArray();
     }
 
     //新增单条
     public static function addOne($data)
     {
-    	return Db::name($name)->save($data);
+    	return Db::name('user')->save($data);
     }
 
     //根据条件修改单条
     public static function updateOne($where, $data)
     {
-    	return Db::name($name)->where($where)->save($data);
+    	return Db::name('user')->where($where)->save($data);
     }
 
     //列表页方法
     public static function getList($where, $pageData)
     {
-        $list = Db::name($name)
+        $list = Db::name('user')
                     ->where($where)
                     ->paginate($pageData['pageNum'], false, [
                         'type'     => 'Bootstrap',
@@ -55,8 +55,6 @@ class UserModel extends Model
                         'page' => $pageData['page'],
             
                      ]);
-        return $res = [
-            'list' => $list,
-        ];
+        return $list;
     }
 }
