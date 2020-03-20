@@ -10,24 +10,6 @@ class TestController extends ControllerController
 {
     public function index()
     {
-        $user_name = input('get.userName');
-        $user_pwd = input('get.password');
-        $page = input('get.page');
-        $pageNum = input('get.pageNum');
-        $pageData = [
-            'page' => $page,
-            'pageNum' => $pageNum,
-        ];
-        $res = User::getList([], $pageData);
-
-
-        return  json([
-            'code' => 1,
-            'msg' => '登陆成功',
-            'data' => [
-                    'list' => $res['list'],
-                ]
-        ]);
         $user = Db::name('users')->select();
         $user = Db::connect('mysql')->name('users')->select();
         $user = Db::name('users')->where('id', 1)->selectOrFail();
