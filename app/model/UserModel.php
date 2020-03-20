@@ -10,9 +10,9 @@ use think\facade\Db;
  */
 class UserModel extends Model
 {
-    protected static $connection = 'mysql';
-    protected static $name = 'user';
-    protected static $pk = 'uid';
+    protected $connection = 'mysql';
+    protected $name = 'user';
+    protected $pk = 'uid';
 
     // 模型初始化
     protected static function init()
@@ -23,7 +23,7 @@ class UserModel extends Model
     //根据条件查询单条
     public static function findOne($where)
     {
-    	return Db::name($name)->where($where)->find();
+    	return UserModel::where($where)->find();
     }
 
     //根据条件查询多条
