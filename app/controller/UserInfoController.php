@@ -3,90 +3,122 @@
 namespace app\controller;
 
 use app\controller\ControllerController;
-use think\Session;
-use think\Cookie;
-use app\model\UserModel as User;
+use app\common\tool\Page;
+use app\common\tool\RequestTool;
+use app\common\logicalentity\User;
 
 class UserInfoController extends ControllerController
 {
+	/**
+	 * @name 构造函数前执行方法
+	 *
+	 * @return 
+	 */
     public function _initialize()
     {
-        // if(!session('username')){
-		// 	return  json([
-	    //         'code' => -1010,
-	    //         'msg' => '登陆过期，请先登陆',
-	    //         'data' => []
-	    //     ]);
-        // }
+		//登陆验证
+        if(User::isLogin()){
+			return  json([
+	            'code' => -1010,
+	            'msg' => '登陆过期，请先登陆',
+	            'data' => []
+	        ]);
+        }
 	}
-    public function login()
+
+	/**
+	 * 获取用户信息相关
+	 *
+	 * @return array 用户信息
+	 */
+    public function getUserInfo()
     {
-    	$user_name = input('post.userName');
-    	$user_pwd = input('post.password');
-    	
-    	if(!$user_name || !$user_pwd) 
+		$userObj = new User();
+		$userInfo = $userObj->doGetLogUserInfo();
+		if($userInfo){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'userInfo' => $userInfo
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	/**
+	 * 获取全部用户信息相关
+	 *
+	 * @return array 用户信息
+	 */
+    public function getAllUserInfo()
+    {
+		$pageData = Page::getPageParameters();
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$userObj = new User();
+		$list = $userObj->doGetAllUserInfo($pageData);
+		if($userInfo){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	/**
+	 * 更新用户信息
+	 *
+	 * @return array 
+	 */
+    public function saveUserInfo()
+    {
+    	$userName = RequestTool::postParameters('userName');
+		$updateInfo = RequestTool::postParameters('updateInfo');
+		if(!$userName || !$updateInfo) 
     	{
 	    	return  json([
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
-	            		'user_name' => $user_name,
-	            		'user_pwd' => $user_pwd,
-	            	]
-	        ]);
-    	}
-
-    	$loginData = [
-    			'user_name' => $user_name,
-    			'user_pwd' => $user_pwd,
-    		];
-    		
-		if($user = User::findOne($loginData))
-		{
-			return  json([
-	            'code' => 1,
-	            'msg' => '登陆成功',
-	            'data' => [
-	            		'user_nickname' => $user['user_nickname'],
+	            		'userName' => $userName,
+	            		'updateInfo' => $updateInfo,
 	            	]
 	        ]);
 		}
-        return  json([
-            'code' => -2001,
-            'msg' => '登陆失败，用户名或密码错误',
-            'data' => ''
-        ]);
-    }
-    
-    public function logout()
-    {
-		//TODO 注销操作
+		
+		$userObj = new User();
+		$res = $userObj->doSaveUserInfo($userName, $updateInfo);
+		if($res){
+			return  json([
+	            'code' => 1,
+	            'msg' => '修改成功',
+	            'data' => []
+	        ]);
+		}
 		return  json([
-            'code' => 1,
-            'msg' => '注销成功',
-            'data' => ''
-        ]);
-        
-    }
-    
-    public function doLog($data)
-    {
-	    $user_name = addslashes(trim(stripslashes($data['user_name'])));
-        $user_pwd = addslashes(trim(stripslashes($data['user_pwd'])));
-        
-        $loginData = [
-			['user_name', '=', $user_name],
-			['user_pwd', '=', $user_pwd],
-		];
-        if($user = User::getOneUser($loginData))
-        {
-			//TODO 登陆操作
-			session('[start]');
-			session('user_nickname', $user['user_nickname']);
-			session('user_name', $user['user_name']);
-			setcookie("jrsToken", 'gaojunhua98', time()+3600, "/", "127.0.0.1");
-            return $user;
-        }
-		return false;
-    }
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 }

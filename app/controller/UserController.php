@@ -2,8 +2,6 @@
 
 namespace app\controller;
 
-use think\Session;
-use think\Cookie;
 use app\common\tool\RequestTool;
 use app\common\logicalentity\User;
 use app\controller\ControllerController;
@@ -18,24 +16,24 @@ class UserController extends ControllerController
 	 */
     public function login()
     {
-    	$user_name = RequestTool::postParameters('userName');
-		$user_pwd = RequestTool::postParameters('password');
+    	$userName = RequestTool::postParameters('userName');
+		$password = RequestTool::postParameters('password');
     	
-    	if(!$user_name || !$user_pwd) 
+    	if(!$userName || !$password) 
     	{
 	    	return  json([
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
-	            		'user_name' => $user_name,
-	            		'user_pwd' => $user_pwd,
+	            		'userName' => $userName,
+	            		'password' => $password,
 	            	]
 	        ]);
     	}
 
     	$loginData = [
-    			'user_name' => $user_name,
-    			'user_pwd' => $user_pwd,
+    			'userName' => $userName,
+    			'password' => $password,
     		];
     		
 		if($user = User::doLogin($loginData))
@@ -57,10 +55,18 @@ class UserController extends ControllerController
     
     public function logout()
     {
-		//TODO 注销操作
+    	$user_name = RequestTool::postParameters('userName');
+		if(User::doLogout($user_name))
+		{
+			return  json([
+				'code' => 1,
+				'msg' => '注销成功',
+				'data' => ''
+			]);
+		}
 		return  json([
             'code' => 1,
-            'msg' => '注销成功',
+            'msg' => '注销失败',
             'data' => ''
         ]);
         
