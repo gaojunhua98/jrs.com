@@ -92,22 +92,22 @@ class UserInfoController extends ControllerController
 	 */
     public function saveUserInfo()
     {
-    	$userName = RequestTool::postParameters('userName');
+    	$userId = RequestTool::postParameters('userId');
 		$updateInfo = RequestTool::postParameters('updateInfo');
-		if(!$userName || !$updateInfo) 
+		if(!$updateInfo) 
     	{
 	    	return  json([
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
-	            		'userName' => $userName,
+	            		'userId' => $userId,
 	            		'updateInfo' => $updateInfo,
 	            	]
 	        ]);
 		}
 		
 		$userObj = new User();
-		$res = $userObj->doSaveUserInfo($userName, $updateInfo);
+		$res = $userObj->doSaveUserInfo($userId, $updateInfo);
 		if($res){
 			return  json([
 	            'code' => 1,

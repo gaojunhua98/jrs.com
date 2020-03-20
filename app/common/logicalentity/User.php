@@ -101,9 +101,17 @@ class User
      */
     public function doSaveUserInfo($userId, $saveDate)
     {
-        $where = [
-            ['user_id', '=', $userId]
-        ];
+        if(is_null($userId))
+        {
+            $where = [
+                ['user_name', '=', session('user_name')]
+            ];
+        } else {
+            $where = [
+                ['user_id', '=', $userId]
+            ];
+        }
+
         $res = UserInfoModel::updateOne($where, $saveDate);
         if($res)
         {
