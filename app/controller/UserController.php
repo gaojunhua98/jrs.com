@@ -12,8 +12,10 @@ class UserController extends ControllerController
 {
     public function login()
     {
-    	$user_name = RequsetTool::postParameters('userName');
-    	$user_pwd = RequsetTool::postParameters('password');
+    	// $user_name = RequsetTool::postParameters('userName');
+		// $user_pwd = RequsetTool::postParameters('password');
+		$user_name = input('post.userName');
+    	$user_pwd = input('post.password');
     	
     	if(!$user_name || !$user_pwd) 
     	{
