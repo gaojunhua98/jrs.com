@@ -10,9 +10,9 @@ use think\facade\Db;
  */
 class UsersModel extends Model
 {
-    protected static $connection = 'mysql';
-    protected static $name = 'users';
-    protected static $pk = 'uid';
+    protected $connection = 'mysql';
+    protected $name = 'users';
+    protected $pk = 'uid';
 
     // 模型初始化
     protected static function init()
@@ -45,7 +45,7 @@ class UsersModel extends Model
     }
 
     //列表页方法
-    public static function getList($where = [], $pageData)
+    public static function getList($where, $pageData)
     {
         $list = Db::name($name)
                     ->where($where)
