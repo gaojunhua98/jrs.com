@@ -2,13 +2,13 @@
 
 namespace app\model;
 
-use app\model\ModelModel;
+use think\Model;
 use think\facade\Db;
 
 /**
  * @name 工资表
  */
-class UserWagesModel extends ModelModel
+class UserWagesModel extends Model
 {
     protected $connection = 'mysql';
     protected $name = 'user_wages';

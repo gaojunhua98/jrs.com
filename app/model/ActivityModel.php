@@ -2,13 +2,13 @@
 
 namespace app\model;
 
-use app\model\ModelModel;
+use think\Model;
 use think\facade\Db;
 
 /**
  * @name 活动表
  */
-class ActivityModel extends ModelModel
+class ActivityModel extends Model
 {
     protected $connection = 'mysql';
     protected $name = 'activity';

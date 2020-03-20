@@ -2,13 +2,13 @@
 
 namespace app\model;
 
-use app\model\ModelModel;
+use think\Model;
 use think\facade\Db;
 
 /**
  * @name 特殊考勤表
  */
-class SpecialUserWorkerAttendanceModel extends ModelModel
+class SpecialUserWorkerAttendanceModel extends Model
 {
     protected $connection = 'mysql';
     protected $name = 'special_user_work_attendance';

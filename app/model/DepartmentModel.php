@@ -2,13 +2,13 @@
 
 namespace app\model;
 
-use app\model\ModelModel;
+use think\Model;
 use think\facade\Db;
 
 /**
  * @name 部门表
  */
-class DepartmentModel extends ModelModel
+class DepartmentModel extends Model
 {
     protected $connection = 'mysql';
     protected $name = 'department';

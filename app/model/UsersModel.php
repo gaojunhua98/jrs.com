@@ -2,17 +2,17 @@
 
 namespace app\model;
 
-use app\model\ModelModel;
+use think\Model;
 use think\facade\Db;
 
 /**
  * @name 用户登陆表
  */
-class UsersModel extends ModelModel
+class UsersModel extends Model
 {
-    protected static $connection = 'mysql';
-    protected static $name = 'users';
-    protected static $pk = 'uid';
+    protected $connection = 'mysql';
+    protected $name = 'users';
+    protected $pk = 'uid';
 
     // 模型初始化
     protected static function init()
