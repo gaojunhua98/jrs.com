@@ -20,7 +20,7 @@ class RequestTool
     public static function postParameters($parameterName)
     {
         $parameter = input('post.' . $parameterName);
-        if(!is_array())
+        if(!is_array($parameter))
         {
             $parameter = addslashes(trim(stripslashes($parameter)));
         }
