@@ -47,13 +47,12 @@ class UsersModel extends Model
     //列表页方法
     public static function getList($where, $pageData)
     {
+        $total = Db::name('users')->where($where)->count();
         $list = Db::name('users')
                     ->where($where)
-                    ->paginate($pageData['page'], false, ['page' => $pageData['pageNum']]);
-        $page = $list->render();
+                    ->paginate($pageData['page'], false, $pageData['pageNum']);
         return $res = [
             'list' => $list,
-            'page' => $page
         ];
     }
 }
