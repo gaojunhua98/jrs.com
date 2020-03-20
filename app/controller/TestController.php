@@ -30,7 +30,7 @@ class TestController extends ControllerController
             'msg' => '登陆成功',
             'data' => [
                     'list' => $res['list'],
-                    'pageData' => $res['pageData'],
+                    'pageData' => $res['page'],
                 ]
         ]);
         $user = Db::name('users')->select();
