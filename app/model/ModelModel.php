@@ -23,31 +23,31 @@ class ModelModel extends Model
     //根据条件查询单条
     public static function findOne($where)
     {
-    	return ModelModel::where($where)->find();
+    	return static::where($where)->find();
     }
 
     //根据条件查询多条
     public static function selectAny($where)
     {
-    	return ModelModel::where($where)->select()->toArray();
+    	return static::where($where)->select()->toArray();
     }
 
     //新增单条
     public static function addOne($data)
     {
-    	return ModelModel::save($data);
+    	return static::save($data);
     }
 
     //根据条件修改单条
     public static function updateOne($where, $data)
     {
-    	return ModelModel::where($where)->save($data);
+    	return static::where($where)->save($data);
     }
 
     //列表页方法
     public static function getList($where, $pageData)
     {
-        $list = ModelModel::where($where)
+        $list = static::where($where)
                     ->paginate($pageData['pageNum'], false, [
                         'type'     => 'Bootstrap',
                         'var_page' => 'page',
