@@ -2,17 +2,18 @@
 
 namespace app\controller;
 
-use app\controller\ControllerController;
 use think\Session;
 use think\Cookie;
-use app\model\UserModel as User;
+use app\common\tool\RequsetTool;
+use app\common\logicalentity\User;
+use app\controller\ControllerController;
 
 class UserController extends ControllerController
 {
     public function login()
     {
-    	$user_name = input('post.userName');
-    	$user_pwd = input('post.password');
+    	$user_name = RequsetTool::postParameters('userName');
+    	$user_pwd = RequsetTool::postParameters('password');
     	
     	if(!$user_name || !$user_pwd) 
     	{
@@ -31,7 +32,7 @@ class UserController extends ControllerController
     			'user_pwd' => $user_pwd,
     		];
     		
-		if($user = User::findOne($loginData))
+		if($user = $User::doLog($loginData))
 		{
 			return  json([
 	            'code' => 1,
@@ -57,26 +58,6 @@ class UserController extends ControllerController
             'data' => ''
         ]);
         
-    }
-    
-    public function doLog($data)
-    {
-	    $user_name = addslashes(trim(stripslashes($data['user_name'])));
-        $user_pwd = addslashes(trim(stripslashes($data['user_pwd'])));
-        
-        $loginData = [
-			['user_name', '=', $user_name],
-			['user_pwd', '=', $user_pwd],
-		];
-        if($user = User::getOneUser($loginData))
-        {
-			//TODO 登陆操作
-			session('[start]');
-			session('user_nickname', $user['user_nickname']);
-			session('user_name', $user['user_name']);
-			setcookie("jrsToken", 'gaojunhua98', time()+3600, "/", "127.0.0.1");
-            return $user;
-        }
-		return false;
-    }
+	}
+	
 }
