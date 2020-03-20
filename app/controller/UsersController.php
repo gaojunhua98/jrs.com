@@ -2,12 +2,12 @@
 
 namespace app\controller;
 
-use app\BaseController;
+use app\controller\ControllerController;
 use think\Session;
 use think\Cookie;
 use app\model\UsersModel as User;
 
-class UsersController extends BaseController
+class UsersController extends ControllerController
 {
     public function login()
     {
@@ -31,7 +31,7 @@ class UsersController extends BaseController
     			'user_pwd' => $user_pwd,
     		];
     		
-		if($user = $this->doLog($loginData))
+		if($user = $this::findOne($loginData))
 		{
 			return  json([
 	            'code' => 1,

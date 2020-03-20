@@ -2,10 +2,10 @@
 
 namespace app\controller;
 
-use app\BaseController;
+use app\controller\ControllerController;
 use app\model\UsersModel as User;
 
-class JurisdictionController extends BaseController
+class JurisdictionController extends ControllerController
 {
     public function login()
     {

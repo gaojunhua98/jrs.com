@@ -2,10 +2,10 @@
 
 namespace app\controller;
 
-use app\BaseController;
+use app\controller\ControllerController;
 use think\facade\Db;
 
-class TestController extends BaseController
+class TestController extends ControllerController
 {
     public function index()
     {

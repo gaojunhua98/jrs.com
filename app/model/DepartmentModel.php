@@ -6,13 +6,13 @@ use app\model\ModelModel;
 use think\facade\Db;
 
 /**
- * @name 用户登陆表
+ * @name 部门表
  */
-class UsersModel extends ModelModel
+class DepartmentModel extends ModelModel
 {
     protected $connection = 'mysql';
-    protected $name = 'users';
-    protected $pk = 'uid';
+    protected $name = 'department';
+    protected $pk = 'department_id';
 
     // 模型初始化
     protected static function init()
@@ -20,8 +20,8 @@ class UsersModel extends ModelModel
         //TODO:初始化内容
     }
     
-    public static function getOneUser($where)
+    public static function getOneDepartment($where)
     {
-    	return Db::name('users')->where($where)->find();
+    	return Db::name('department')->where($where)->find();
     }
 }

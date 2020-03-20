@@ -6,13 +6,13 @@ use app\model\ModelModel;
 use think\facade\Db;
 
 /**
- * @name 用户登陆表
+ * @name 活动表
  */
-class UsersModel extends ModelModel
+class ActivityModel extends ModelModel
 {
     protected $connection = 'mysql';
-    protected $name = 'users';
-    protected $pk = 'uid';
+    protected $name = 'activity';
+    protected $pk = 'activity_id';
 
     // 模型初始化
     protected static function init()
@@ -20,8 +20,8 @@ class UsersModel extends ModelModel
         //TODO:初始化内容
     }
     
-    public static function getOneUser($where)
+    public static function getOneActivity($where)
     {
-    	return Db::name('users')->where($where)->find();
+    	return Db::name('activity')->where($where)->find();
     }
 }
