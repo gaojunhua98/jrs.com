@@ -10,9 +10,9 @@ use think\facade\Db;
  */
 class UsersModel extends Model
 {
-    protected $connection = 'mysql';
-    protected $name = 'users';
-    protected $pk = 'uid';
+    protected static $connection = 'mysql';
+    protected static $name = 'users';
+    protected static $pk = 'uid';
 
     // 模型初始化
     protected static function init()
