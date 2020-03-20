@@ -58,7 +58,7 @@ class UserInfoController extends ControllerController
 	 */
     public function getAllUserInfo()
     {
-		$pageData = Page::getPageParameters();
+		$pageData = Page::doGetAllUserInfo();
 		if(!$pageData)
 		{
 	    	return  json([
