@@ -34,7 +34,7 @@ class UserController extends ControllerController
     			'user_pwd' => $user_pwd,
     		];
     		
-		if($user = $User::doLog($loginData))
+		if($user = User::doLogin($loginData))
 		{
 			return  json([
 	            'code' => 1,
