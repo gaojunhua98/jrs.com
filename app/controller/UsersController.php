@@ -31,7 +31,7 @@ class UsersController extends ControllerController
     			'user_pwd' => $user_pwd,
     		];
     		
-		if($user = User::getOneUser($loginData))
+		if($user = User::findOne($loginData))
 		{
 			return  json([
 	            'code' => 1,
