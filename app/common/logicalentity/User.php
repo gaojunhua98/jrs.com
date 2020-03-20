@@ -21,7 +21,7 @@ class User
 			['user_name', '=', $loginData['user_name']],
 			['user_pwd', '=', $loginData['user_pwd']],
 		];
-        if($user = UserModel::getOneUser($loginData))
+        if($user = UserModel::findOne($loginData))
         {
 			//TODO 登陆操作
 			session('[start]');
