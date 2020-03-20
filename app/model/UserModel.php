@@ -2,7 +2,6 @@
 
 namespace app\model;
 
-use think\Model;
 use app\model\ModelModel;
 use think\facade\Db;
 
