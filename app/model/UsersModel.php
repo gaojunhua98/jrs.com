@@ -43,4 +43,17 @@ class UsersModel extends Model
     {
     	return Db::name($name)->where($where)->save($data);
     }
+
+    //列表页方法
+    public static function getList($where = [], $pageData)
+    {
+        $list = Db::name($name)
+                    ->where($where)
+                    ->paginate($pageData['page'], false, ['page' => $pageData['pageNum']]);
+        $page = $list->render();
+        return $res = [
+            'list' => $list,
+            'page' => $page
+        ];
+    }
 }

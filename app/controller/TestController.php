@@ -4,11 +4,35 @@ namespace app\controller;
 
 use app\controller\ControllerController;
 use think\facade\Db;
+use app\model\UsersModel as User;
 
 class TestController extends ControllerController
 {
     public function index()
     {
+        $user_name = input('get.userName');
+        $user_pwd = input('get.password');
+        $page = input('get.page');
+        $pageNum = input('get.pageNum');
+        // $loginData = [
+        //     'user_name' => $user_name,
+        //     'user_pwd' => $user_pwd,
+        // ];
+        $pageData = [
+            'page' => $page,
+            'pageNum' => $pageNum,
+        ];
+        $res = User::getList($loginData, $pageData);
+
+
+        return  json([
+            'code' => 1,
+            'msg' => '登陆成功',
+            'data' => [
+                    'list' => $res['list'],
+                    'pageData' => $res['pageData'],
+                ]
+        ]);
         $user = Db::name('users')->select();
         $user = Db::connect('mysql')->name('users')->select();
         $user = Db::name('users')->where('id', 1)->selectOrFail();
