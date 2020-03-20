@@ -10,8 +10,8 @@ use think\facade\Db;
  */
 class ModelModel extends Model
 {
-    protected $connection = 'mysql';
-    protected $name = 'name';
+    protected static $connection = 'mysql';
+    protected static $name = 'name';
 //TODO 模型公共方法
 
     //TODO 根据条件查询单条
