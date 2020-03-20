@@ -23,31 +23,31 @@ class UsersModel extends Model
     //根据条件查询单条
     public static function findOne($where)
     {
-    	return Db::name($name)->where($where)->find();
+    	return Db::name('users')->where($where)->find();
     }
 
     //根据条件查询多条
     public static function selectAny($where)
     {
-    	return Db::name($name)->where($where)->select()->toArray();
+    	return Db::name('users')->where($where)->select()->toArray();
     }
 
     //新增单条
     public static function addOne($data)
     {
-    	return Db::name($name)->save($data);
+    	return Db::name('users')->save($data);
     }
 
     //根据条件修改单条
     public static function updateOne($where, $data)
     {
-    	return Db::name($name)->where($where)->save($data);
+    	return Db::name('users')->where($where)->save($data);
     }
 
     //列表页方法
     public static function getList($where, $pageData)
     {
-        $list = Db::name($name)
+        $list = Db::name('users')
                     ->where($where)
                     ->paginate($pageData['page'], false, ['page' => $pageData['pageNum']]);
         $page = $list->render();
