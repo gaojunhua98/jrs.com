@@ -12,17 +12,12 @@ class TestController extends ControllerController
     {
         $user_name = input('get.userName');
         $user_pwd = input('get.password');
-        $page = input('get.page');
         $pageNum = input('get.pageNum');
         // $loginData = [
         //     'user_name' => $user_name,
         //     'user_pwd' => $user_pwd,
         // ];
-        $pageData = [
-            'page' => $page,
-            'pageNum' => $pageNum,
-        ];
-        $res = User::getList([], $pageData);
+        $res = User::getList([], $pageNum);
 
 
         return  json([
