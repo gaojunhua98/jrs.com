@@ -3,17 +3,16 @@
 namespace app\model;
 
 use think\Model;
-use app\model\ModelModel;
 use think\facade\Db;
 
 /**
  * @name 用户登陆表
  */
-class UserModel extends ModelModel
+class ModelModel extends Model
 {
-    protected $connection = 'mysql';
-    protected $name = 'user';
-    protected $pk = 'uid';
+    // protected $connection = 'mysql';
+    // protected $name = 'tableName';
+    // protected $pk = 'id';
 
     // 模型初始化
     protected static function init()
@@ -22,10 +21,10 @@ class UserModel extends ModelModel
     }
     
     //根据条件查询单条
-    // public static function findOne($where)
-    // {
-    // 	return UserModel::where($where)->find();
-    // }
+    public static function findOne($where)
+    {
+    	return UserModel::where($where)->find();
+    }
 
     //根据条件查询多条
     public static function selectAny($where)
