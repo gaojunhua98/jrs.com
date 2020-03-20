@@ -5,10 +5,20 @@ namespace app\controller;
 use app\controller\ControllerController;
 use think\Session;
 use think\Cookie;
-use app\model\UsersModel as User;
+use app\model\UserModel as User;
 
-class UsersController extends ControllerController
+class UserInfoController extends ControllerController
 {
+    public function _initialize()
+    {
+        // if(!session('username')){
+		// 	return  json([
+	    //         'code' => -1010,
+	    //         'msg' => '登陆过期，请先登陆',
+	    //         'data' => []
+	    //     ]);
+        // }
+	}
     public function login()
     {
     	$user_name = input('post.userName');

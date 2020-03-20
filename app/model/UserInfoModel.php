@@ -8,11 +8,11 @@ use think\facade\Db;
 /**
  * @name 用户信息表
  */
-class UsersInfoModel extends Model
+class UserInfoModel extends Model
 {
     protected $connection = 'mysql';
-    protected $name = 'users_info';
-    protected $pk = 'users_info_id';
+    protected $name = 'user_info';
+    protected $pk = 'user_info_id';
 
     // 模型初始化
     protected static function init()

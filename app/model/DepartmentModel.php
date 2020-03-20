@@ -43,4 +43,20 @@ class DepartmentModel extends Model
     {
     	return Db::name($name)->where($where)->save($data);
     }
+
+    //列表页方法
+    public static function getList($where, $pageData)
+    {
+        $list = Db::name('users')
+                    ->where($where)
+                    ->paginate($pageData['pageNum'], false, [
+                        'type'     => 'Bootstrap',
+                        'var_page' => 'page',
+                        'page' => $pageData['page'],
+            
+                     ]);
+        return $res = [
+            'list' => $list,
+        ];
+    }
 }
