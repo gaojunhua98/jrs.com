@@ -22,7 +22,7 @@ class TestController extends ControllerController
             'page' => $page,
             'pageNum' => $pageNum,
         ];
-        $res = User::getList($loginData, $pageData);
+        $res = User::getList([], $pageData);
 
 
         return  json([
