@@ -94,7 +94,7 @@ class UserInfoController extends ControllerController
     {
     	$userId = RequestTool::postParameters('userId');
 		$updateInfo = RequestTool::postParameters('updateInfo');
-		if(!$updateInfo) 
+		if(empty($updateInfo)) 
     	{
 	    	return  json([
 	            'code' => -1001,
