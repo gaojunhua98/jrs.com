@@ -2,7 +2,7 @@
 
 namespace app\common\tool;
 
-class RequsetTool
+class RequestTool
 {
     /**
      * @name 关于get请求参数过滤

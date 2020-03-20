@@ -4,18 +4,22 @@ namespace app\controller;
 
 use think\Session;
 use think\Cookie;
-use app\common\tool\RequsetTool;
+use app\common\tool\RequestTool;
 use app\common\logicalentity\User;
 use app\controller\ControllerController;
 
+/**
+ * @name 用户相关接口
+ */
 class UserController extends ControllerController
 {
+	/**
+	 * @name 登陆接口
+	 */
     public function login()
     {
-    	// $user_name = RequsetTool::postParameters('userName');
-		// $user_pwd = RequsetTool::postParameters('password');
-		$user_name = input('post.userName');
-    	$user_pwd = input('post.password');
+    	$user_name = RequestTool::postParameters('userName');
+		$user_pwd = RequestTool::postParameters('password');
     	
     	if(!$user_name || !$user_pwd) 
     	{

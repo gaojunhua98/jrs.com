@@ -13,7 +13,7 @@ class User
 {
 
     /**
-     * 登陆操作
+     * 登陆逻辑
      */
     public static function doLogin($loginData)
     {
