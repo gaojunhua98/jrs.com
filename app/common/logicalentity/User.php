@@ -25,10 +25,8 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-			session('[start]');
-			session('user_name', $user['user_name']);
-            session('user_nickname', $user['user_nickname']);
-            session('[pause]');
+			Session::set('user_name', $user['user_name']);
+            Session::set('user_nickname', $user['user_nickname']);
 
 			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
@@ -43,10 +41,8 @@ class User
     {
         if(session('user_name') == $userName)
         {
-            session('[start]');
-            session('user_name' , null);
-            session('user_nickname' , null);
-            session('[pause]');
+            Session::set('user_name' , null);
+            Session::set('user_nickname' , null);
 
             cookie('user_name', null);
             return true;
@@ -72,8 +68,7 @@ class User
      */
     public function doGetLogUserInfo()
     {
-        var_dump(session('user_name'), $_SESSION['user_name'], cookie('user_name'));
-        die;
+        var_dump(Session::get('user_name'), cookie('user_name'));
         $where = [
             ['user_name', '=', session('user_name')]
         ];
