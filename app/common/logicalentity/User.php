@@ -27,11 +27,9 @@ class User
 			//登陆操作
 			session('[start]');
 			session('user_name', $user['user_name']);
-            var_dump(session('user_name'));
             session('user_nickname', $user['user_nickname']);
             session('[pause]');
-            var_dump(session('user_name'));
-            die;
+
 			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
@@ -61,6 +59,8 @@ class User
      */
     public static function isLogin()
     {
+        var_dump(session('user_name'), cookie('user_name'));
+        die;
         if(session('user_name') == cookie('user_name'))
         {
             cookie("user_name", session('user_name'), time()+3600, "/", "127.0.0.1");
