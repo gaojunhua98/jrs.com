@@ -21,7 +21,7 @@ class UserController extends ControllerController
     	
     	if(!$userName || !$password) 
     	{
-	    	return  json_encode([
+	    	return  json([
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
@@ -38,7 +38,7 @@ class UserController extends ControllerController
     		
 		if($user = User::doLogin($loginData))
 		{
-			return  json_encode([
+			return  json([
 	            'code' => 1,
 	            'msg' => '登陆成功',
 	            'data' => [
@@ -46,7 +46,7 @@ class UserController extends ControllerController
 	            	]
 	        ]);
 		}
-        return  json_encode([
+        return  json([
             'code' => -2001,
             'msg' => '登陆失败，用户名或密码错误',
             'data' => ''
@@ -58,13 +58,13 @@ class UserController extends ControllerController
     	$user_name = RequestTool::postParameters('userName');
 		if(User::doLogout($user_name))
 		{
-			return  json_encode([
+			return  json([
 				'code' => 1,
 				'msg' => '注销成功',
 				'data' => ''
 			]);
 		}
-		return  json_encode([
+		return  json([
             'code' => 1,
             'msg' => '注销失败',
             'data' => ''
