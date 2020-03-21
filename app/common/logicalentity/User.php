@@ -85,7 +85,7 @@ class User
     public function doGetUserInfoById($userId)
     {
         $where = [
-            ['user_id', '=', session($userId)]
+            ['user_id', '=', $userId]
         ];
         $userInfo = UserInfoModel::findOne($where);
         if($userInfo)
