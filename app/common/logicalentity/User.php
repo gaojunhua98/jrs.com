@@ -27,9 +27,11 @@ class User
 			//登陆操作
 			session('[start]');
 			session('user_name', $user['user_name']);
+            var_dump(session('user_name'));
             session('user_nickname', $user['user_nickname']);
             session('[pause]');
-
+            var_dump(session('user_name'));
+            die;
 			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
@@ -75,8 +77,6 @@ class User
         $where = [
             ['user_name', '=', session('user_name')]
         ];
-        var_dump(session('user_name'));
-        die;
         $userInfo = UserInfoModel::findOne($where);
         if($userInfo)
         {
