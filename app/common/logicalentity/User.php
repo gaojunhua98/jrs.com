@@ -59,8 +59,6 @@ class User
      */
     public static function isLogin()
     {
-        var_dump(session('user_name'), cookie('user_name'));
-        die;
         if(session('user_name') == cookie('user_name'))
         {
             cookie("user_name", session('user_name'), time()+3600, "/", "127.0.0.1");
@@ -74,6 +72,8 @@ class User
      */
     public function doGetLogUserInfo()
     {
+        var_dump(session('user_name'), cookie('user_name'));
+        die;
         $where = [
             ['user_name', '=', session('user_name')]
         ];
