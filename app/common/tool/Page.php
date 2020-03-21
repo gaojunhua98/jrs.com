@@ -18,13 +18,13 @@ class Page
         $pageNum = RequestTool::getParameters('pageNum');
         if(!$page || !$pageNum) 
     	{
-	    	return  flase;
+	    	return  false;
     	}
 		$pageData = [
 			'page' => $page,
 			'pageNum' => $pageNum,
 		];
-        return $pageDate;
+        return $pageData;
     }
 
 }

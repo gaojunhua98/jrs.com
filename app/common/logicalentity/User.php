@@ -49,7 +49,7 @@ class User
             session('[pause]');
 
             cookie('user_name', null);
-            return $user;
+            return true;
         }
 		return false;
     }

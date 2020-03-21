@@ -18,7 +18,7 @@ class UserInfoController extends ControllerController
     {
 		//登陆验证
         if(User::isLogin()){
-			return  json([
+			return  json_encode([
 	            'code' => -1010,
 	            'msg' => '登陆过期，请先登陆',
 	            'data' => []
@@ -36,7 +36,7 @@ class UserInfoController extends ControllerController
 		$userObj = new User();
 		$userInfo = $userObj->doGetLogUserInfo();
 		if($userInfo){
-			return  json([
+			return  json_encode([
 	            'code' => 1,
 	            'msg' => '获取成功',
 	            'data' => [
@@ -44,7 +44,7 @@ class UserInfoController extends ControllerController
 				]
 	        ]);
 		}
-		return  json([
+		return  json_encode([
 			'code' => 1,
 			'msg' => '无数据',
 			'data' => []
@@ -58,10 +58,10 @@ class UserInfoController extends ControllerController
 	 */
     public function getAllUserInfo()
     {
-		$pageData = Page::doGetAllUserInfo();
+		$pageData = Page::getPageParameters();
 		if(!$pageData)
 		{
-	    	return  json([
+	    	return  json_encode([
 	            'code' => -1001,
 	            'msg' => '缺少分页参数',
 	            'data' => []
@@ -69,8 +69,8 @@ class UserInfoController extends ControllerController
 		}
 		$userObj = new User();
 		$list = $userObj->doGetAllUserInfo($pageData);
-		if($userInfo){
-			return  json([
+		if($list){
+			return  json_encode([
 	            'code' => 1,
 	            'msg' => '获取成功',
 	            'data' => [
@@ -78,7 +78,7 @@ class UserInfoController extends ControllerController
 				]
 	        ]);
 		}
-		return  json([
+		return  json_encode([
 			'code' => 1,
 			'msg' => '无数据',
 			'data' => []
@@ -96,7 +96,7 @@ class UserInfoController extends ControllerController
 		$updateInfo = RequestTool::postParameters('updateInfo');
 		if(empty($updateInfo)) 
     	{
-	    	return  json([
+	    	return  json_encode([
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
@@ -109,13 +109,13 @@ class UserInfoController extends ControllerController
 		$userObj = new User();
 		$res = $userObj->doSaveUserInfo($userId, $updateInfo);
 		if($res){
-			return  json([
+			return  json_encode([
 	            'code' => 1,
 	            'msg' => '修改成功',
 	            'data' => []
 	        ]);
 		}
-		return  json([
+		return  json_encode([
 			'code' => 1,
 			'msg' => '无数据',
 			'data' => []
