@@ -68,10 +68,24 @@ class User
      */
     public function doGetLogUserInfo()
     {
-        var_dump(session('user_name'), cookie('user_name'));
-        die;
         $where = [
             ['user_name', '=', session('user_name')]
+        ];
+        $userInfo = UserInfoModel::findOne($where);
+        if($userInfo)
+        {
+            return $userInfo;
+        }
+		return false;
+    }
+
+    /**
+     * 获取全部用户信息
+     */
+    public function doGetUserInfoById($userId)
+    {
+        $where = [
+            ['user_id', '=', session($userId)]
         ];
         $userInfo = UserInfoModel::findOne($where);
         if($userInfo)

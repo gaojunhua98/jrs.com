@@ -31,10 +31,11 @@ class UserInfoController extends ControllerController
 	 *
 	 * @return array 用户信息
 	 */
-    public function getUserInfo()
+    public function getUserInfoById()
     {
+		$userId = RequestTool::postParameters('userId');
 		$userObj = new User();
-		$userInfo = $userObj->doGetLogUserInfo();
+		$userInfo = $userObj->doGetLogUserInfo($userId);
 		if($userInfo){
 			return  json([
 	            'code' => 1,
