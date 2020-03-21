@@ -80,7 +80,7 @@ class User
     }
 
     /**
-     * 获取全部用户信息
+     * 获取单个用户信息
      */
     public function doGetUserInfoById($userId)
     {
