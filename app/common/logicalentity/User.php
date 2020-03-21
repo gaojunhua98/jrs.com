@@ -72,8 +72,7 @@ class User
      */
     public function doGetLogUserInfo()
     {
-        session('[start]');
-        var_dump(session('user_name'), cookie('user_name'));
+        var_dump(session('user_name'), $_SESSION['user_name'], cookie('user_name'));
         die;
         $where = [
             ['user_name', '=', session('user_name')]
