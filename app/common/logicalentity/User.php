@@ -123,7 +123,10 @@ class User
                 ['user_id', '=', $userId]
             ];
         }
-
+        if(!UserModel::findOne($where))
+        {
+            return false;
+        }
         $res = UserInfoModel::updateOne($where, $saveDate);
         if($res)
         {
