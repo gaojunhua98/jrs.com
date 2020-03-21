@@ -61,7 +61,7 @@ class User
     {
         if(session('user_name') == cookie('user_name'))
         {
-            cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
+            cookie("user_name", session('user_name'), time()+3600, "/", "127.0.0.1");
             return true;
         }
 		return false;
@@ -75,6 +75,8 @@ class User
         $where = [
             ['user_name', '=', session('user_name')]
         ];
+        var_dump(session('user_name'));
+        die;
         $userInfo = UserInfoModel::findOne($where);
         if($userInfo)
         {
