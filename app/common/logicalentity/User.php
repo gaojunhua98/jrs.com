@@ -25,8 +25,8 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-			Session::set('user_name', $user['user_name']);
-            Session::set('user_nickname', $user['user_nickname']);
+			session('user_name', $user['user_name']);
+            session('user_nickname', $user['user_nickname']);
 
 			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
@@ -41,8 +41,8 @@ class User
     {
         if(session('user_name') == $userName)
         {
-            Session::set('user_name' , null);
-            Session::set('user_nickname' , null);
+            session('user_name' , null);
+            session('user_nickname' , null);
 
             cookie('user_name', null);
             return true;
@@ -55,6 +55,8 @@ class User
      */
     public static function isLogin()
     {
+        var_dump(session('user_name'), cookie('user_name'));
+        die;
         if(session('user_name') == cookie('user_name'))
         {
             cookie("user_name", session('user_name'), time()+3600, "/", "127.0.0.1");
@@ -68,7 +70,7 @@ class User
      */
     public function doGetLogUserInfo()
     {
-        var_dump(Session::get('user_name'), cookie('user_name'));
+        var_dump(session('user_name'), cookie('user_name'));
         $where = [
             ['user_name', '=', session('user_name')]
         ];
