@@ -84,7 +84,7 @@ class UserController extends ControllerController
 				'msg' => '获取成功',
 				'data' => [
 					'id' => $user['user_id'],
-					'username' => $user['user_nickname']
+					'username' => $user['user_name']
 				]
 			]);
 		}
