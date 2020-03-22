@@ -44,7 +44,7 @@ class UserController extends ControllerController
 	            'data' => [
 						'user_nickname' => $user['user_nickname'],
 						'token' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODU0NjQ4OTksImlhdCI6MTU4NDg2MDA5OSwibmJmIjoxNTg0ODYwMDk5LCJ0eXBlIjoibWFuYWdlIiwidWlkIjoiMSIsInVzZXJuYW1lIjoic3VwZXJfYWRtaW4ifQ.xb0dYT9067uvqaZM8CdB7s1N9YQkALJBUx_EYulCOH4',
-						'exp_time' => time('+1 day'),
+						'exp_time' => time()+24*3600,
 	            	]
 	        ]);
 		}
