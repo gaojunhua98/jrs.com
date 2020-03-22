@@ -75,8 +75,9 @@ class UserController extends ControllerController
 
 	public function getUserName()
     {
-    	$user_id = RequestTool::getParameters('token');
-		if($user = User::doGetUserName($user_id))
+		$user_id = RequestTool::getParameters('token');
+		$user = User::doGetUserName($user_id);
+		if($user)
 		{
 			return  json([
 				'code' => 1,
