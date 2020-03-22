@@ -16,8 +16,8 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
-// Route::any(':version/:controller/:function', ':version.:controller/:function')->allowCrossDomain([
-//     'Access-Control-Allow-Origin' => '*',
-//     'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
-//     'Access-Control-Allow-Headers' => 'x-requested-with,content-type,token'
-// ]);
+Route::any(':version/:controller/:function', ':version.:controller/:function')->allowCrossDomain([
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers' => 'x-requested-with,content-type,token'
+]);
