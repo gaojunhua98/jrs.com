@@ -42,7 +42,7 @@ class UserController extends ControllerController
 	            'code' => 1,
 	            'msg' => '登陆成功',
 	            'data' => [
-						'token' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODU0NjQ4OTksImlhdCI6MTU4NDg2MDA5OSwibmJmIjoxNTg0ODYwMDk5LCJ0eXBlIjoibWFuYWdlIiwidWlkIjoiMSIsInVzZXJuYW1lIjoic3VwZXJfYWRtaW4ifQ.xb0dYT9067uvqaZM8CdB7s1N9YQkALJBUx_EYulCOH4',
+						'token' => $user['user_id'],
 						'exp_time' => time()+24*3600,
 	            	]
 	        ]);
@@ -63,6 +63,25 @@ class UserController extends ControllerController
 				'code' => 1,
 				'msg' => '注销成功',
 				'data' => ''
+			]);
+		}
+		return  json([
+            'code' => 1,
+            'msg' => '注销失败',
+            'data' => ''
+        ]);
+        
+	}
+
+	public function getUserName()
+    {
+    	$user_id = RequestTool::getParameters('token');
+		if($user = User::doLogout($user_id))
+		{
+			return  json([
+				'code' => 1,
+				'id' => $user['user_id'],
+				'username' => $user['user_nickname']
 			]);
 		}
 		return  json([

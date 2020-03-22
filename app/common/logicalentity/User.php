@@ -35,6 +35,21 @@ class User
     }
 
     /**
+     * 登陆逻辑
+     */
+    public static function doGetUserName($user_id)
+    {
+        $where = [
+			['user_id', '=', $user_id],
+		];
+        if($user = UserModel::findOne($where))
+        {
+            return $user;
+        }
+		return false;
+    }
+
+    /**
      * 注销逻辑
      */
     public static function doLogout($userName)
