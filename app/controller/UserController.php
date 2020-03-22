@@ -89,7 +89,7 @@ class UserController extends ControllerController
 		}
 		return  json([
             'code' => 1,
-            'msg' => '注销失败',
+            'msg' => '获取失败',
             'data' => ''
         ]);
         
