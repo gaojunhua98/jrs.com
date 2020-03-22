@@ -76,7 +76,7 @@ class UserController extends ControllerController
 	public function getUserName()
     {
     	$user_id = RequestTool::getParameters('token');
-		if($user = User::doLogout($user_id))
+		if($user = User::doGetUserName($user_id))
 		{
 			return  json([
 				'code' => 1,
