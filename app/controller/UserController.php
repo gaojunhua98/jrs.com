@@ -80,8 +80,11 @@ class UserController extends ControllerController
 		{
 			return  json([
 				'code' => 1,
-				'id' => $user['user_id'],
-				'username' => $user['user_nickname']
+				'msg' => '获取成功',
+				'data' => [
+					'id' => $user['user_id'],
+					'username' => $user['user_nickname']
+				]
 			]);
 		}
 		return  json([
