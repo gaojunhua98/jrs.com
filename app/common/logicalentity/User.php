@@ -165,8 +165,6 @@ class User
         }
 
         $res = UserModel::addOne($addInfo);
-        var_dump($res);
-        die;
         if($res)
         {
             $addInfo['user_id'] = $res;
