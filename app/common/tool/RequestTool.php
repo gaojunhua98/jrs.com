@@ -22,7 +22,7 @@ class RequestTool
         $parameter = input('post.' . $parameterName);
         if(!is_array($parameter))
         {
-            $parameter = addslashes(trim(stripslashes($parameter)));
+            $parameter = trim(stripslashes($parameter));
         }
         return $parameter;
     }
