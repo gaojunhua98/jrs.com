@@ -155,8 +155,6 @@ class User
      */
     public function doAddUser($addInfo)
     {
-        var_dump($addInfo);
-        die;
         //判断用户名是否重复
         $where = [
             ['user_name', '=', $addInfo['user_name']],
