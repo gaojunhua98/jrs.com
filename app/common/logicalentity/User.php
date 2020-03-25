@@ -163,16 +163,29 @@ class User
         {
             return false;
         }
-
-        $userObj = new UserModel();
-        $userInfoObj = new UserInfoModel();
-
-        $res = $userObj->addOneIgnore($addInfo);
-        if($res)
+        //处理表数据
+        $userData = [
+            'user_name' => $addInfo['user_name'],
+            'user_pwd' => $addInfo['user_pwd'],
+            'user_nickname' => $addInfo['user_nickname'],
+            'user_email' => $addInfo['user_email'],
+            'user_phone' => $addInfo['user_phone'],
+        ];
+        $user_id = UserModel::addOne($userData);
+        if($user_id)
         {
-            $user = UserModel::findOne($where);
-            $addInfo['user_id'] = $user['user_id'];
-            $userInfoObj->addOneIgnore($addInfo);
+            $userInfoData = [
+                'user_id' => $user_id,
+                'user_nickname' => $addInfo['user_nickname'],
+                'user_sex' => $addInfo['user_sex'],
+                'user_birth' => $addInfo['user_birth'],
+                'user_education' => $addInfo['user_education'],
+                'user_address' => $addInfo['user_address'],
+                'department_id' => $addInfo['department_id'],
+                'department_name' => $addInfo['department_name'],
+                'user_position' => $addInfo['user_position'],
+            ];
+            $UserInfoModel::addOne($addInfo);
             return true;
         }
 		return false;
