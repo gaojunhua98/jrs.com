@@ -71,8 +71,11 @@ class UserInfoController extends ControllerController
 		}
 		$userObj = new User();
 		$where = [];
-		
-		if(!empty($query) && is_array($query)) {
+
+		if(!empty($query)) {
+			if(is_object($query)) {
+				$query = (array)$query;
+			}
 			foreach($query as $key => $value)
 			{
 				$where[] = [$key, 'LIKE', '%' . $value . '%'];
