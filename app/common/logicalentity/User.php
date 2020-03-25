@@ -163,7 +163,8 @@ class User
         {
             return false;
         }
-
+        var_dump($addInfo);
+        die;
         $res = UserModel::addOne($addInfo);
         if($res)
         {
