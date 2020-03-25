@@ -115,7 +115,8 @@ class User
      */
     public function doGetAllUserInfo($pageData)
     {
-        $userInfo = UserInfoModel::getList([], $pageData);
+        $userInfoObj = new UserInfoModel();
+        $userInfo = $userInfoObj->getUserInfoList([], $pageData);
         if($userInfo)
         {
             return $userInfo;
