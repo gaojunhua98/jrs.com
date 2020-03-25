@@ -135,14 +135,14 @@ class User
     public function doAddUser($addInfo)
     {
         //判断用户名是否重复
-        $where = [
-            ['user_nickname', '=', $addInfo['user_nickname']],
-        ];
-        $userInfo = UserInfoModel::findOne($where);
-        if(!empty($userInfo))
-        {
-            return false;
-        }
+        // $where = [
+        //     ['user_nickname', '=', $addInfo['user_nickname']],
+        // ];
+        // $userInfo = UserInfoModel::findOne($where);
+        // if(!empty($userInfo))
+        // {
+        //     return false;
+        // }
         if(UserInfoModel::addOne($addInfo))
         {
             return true;

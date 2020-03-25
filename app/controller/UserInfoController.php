@@ -117,8 +117,8 @@ class UserInfoController extends ControllerController
 	        ]);
 		}
 		return  json([
-			'code' => 1,
-			'msg' => '无数据',
+			'code' => -2001,
+			'msg' => '修改失败',
 			'data' => []
 		]);
 	}
@@ -138,7 +138,7 @@ class UserInfoController extends ControllerController
 			]);
 		}
 		return  json([
-            'code' => 1,
+            'code' => -2001,
             'msg' => '添加失败',
             'data' => [
 				'addInfo' => $addInfo,
