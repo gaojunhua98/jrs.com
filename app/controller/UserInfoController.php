@@ -71,7 +71,8 @@ class UserInfoController extends ControllerController
 		}
 		$userObj = new User();
 		$where = [];
-
+		var_dump($query);
+		exit;
 		if(!empty($query)) {
 			if(is_object($query)) {
 				$query = (array)$query;
