@@ -166,7 +166,7 @@ class User
         //处理表数据
         $userData = [
             'user_name' => $addInfo['user_name'],
-            'user_pwd' => $addInfo['user_pwd'],
+            'user_pwd' => $addInfo['user_pwd'] ?: '123456',
             'user_nickname' => $addInfo['user_nickname'],
             'user_email' => $addInfo['user_email'],
             'user_phone' => $addInfo['user_phone'],
