@@ -159,7 +159,7 @@ class User
         $where = [
             ['user_name', '=', $addInfo['user_name']],
         ];
-        if(!UserModel::findOne($where))
+        if(UserModel::findOne($where))
         {
             return false;
         }
