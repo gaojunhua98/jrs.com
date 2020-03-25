@@ -33,9 +33,9 @@ class UserInfoController extends ControllerController
 	 */
     public function getUserInfoById()
     {
-		$userId = RequestTool::getParameters('userId');
+		$userInfoId = RequestTool::getParameters('user_info_id');
 		$userObj = new User();
-		$userInfo = $userObj->doGetUserInfoById($userId);
+		$userInfo = $userObj->doGetUserInfoById($userInfoId);
 		if($userInfo){
 			return  json([
 	            'code' => 1,
@@ -93,7 +93,7 @@ class UserInfoController extends ControllerController
 	 */
     public function saveUserInfo()
     {
-    	$userId = RequestTool::postParameters('userId');
+    	$userInfoId = RequestTool::postParameters('user_info_id');
 		$updateInfo = RequestTool::postParameters('updateInfo');
 		if(empty($updateInfo)) 
     	{
@@ -101,14 +101,14 @@ class UserInfoController extends ControllerController
 	            'code' => -1001,
 	            'msg' => '缺少参数',
 	            'data' => [
-	            		'userId' => $userId,
+	            		'user_info_id' => $userInfoId,
 	            		'updateInfo' => $updateInfo,
 	            	]
 	        ]);
 		}
 		
 		$userObj = new User();
-		$res = $userObj->doSaveUserInfo($userId, $updateInfo);
+		$res = $userObj->doSaveUserInfo($userInfoId, $updateInfo);
 		if($res){
 			return  json([
 	            'code' => 1,

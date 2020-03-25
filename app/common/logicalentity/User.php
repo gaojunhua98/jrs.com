@@ -113,16 +113,9 @@ class User
      */
     public function doSaveUserInfo($userInfoId, $saveDate)
     {
-        if(is_null($userInfoId))
-        {
-            $where = [
-                ['user_name', '=', session('user_name')]
-            ];
-        } else {
-            $where = [
-                ['user_info_id', '=', $userInfoId]
-            ];
-        }
+        $where = [
+            ['user_info_id', '=', $userInfoId]
+        ];
         if(!UserModel::findOne($where))
         {
             return false;
@@ -142,7 +135,7 @@ class User
     {
         //判断用户名是否重复
         $where = [
-            ['user_name', '=', $addInfo['user_name']],
+            ['user_nickname', '=', $addInfo['user_nickname']],
         ];
         if(UserModel::findOne($where))
         {
