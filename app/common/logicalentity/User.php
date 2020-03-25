@@ -95,28 +95,12 @@ class User
     }
 
     /**
-     * 获取单个用户信息
-     */
-    public function doGetUserInfoById($userId)
-    {
-        $where = [
-            ['user_id', '=', $userId]
-        ];
-        $userInfo = UserInfoModel::findOne($where);
-        if($userInfo)
-        {
-            return $userInfo;
-        }
-		return false;
-    }
-
-    /**
      * 获取全部用户信息
      */
     public function doGetAllUserInfo($pageData)
     {
         $userInfoObj = new UserInfoModel();
-        $userInfo = $userInfoObj->getUserInfoList([], $pageData);
+        $userInfo = $userInfoObj->getUserInfoList($pageData);
         if($userInfo)
         {
             return $userInfo;

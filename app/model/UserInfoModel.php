@@ -26,11 +26,10 @@ class UserInfoModel extends ModelModel
     }
 
     //列表页方法
-    public function getUserInfoList($where, $pageData)
+    public function getUserInfoList($pageData)
     {
         $list = Db::name('user_info userInfo')
                     ->field('user.user_email,user.user_phone,userInfo.user_nickname,userInfo.user_sex,userInfo.user_birth,userInfo.user_education,userInfo.user_address,userInfo.department_id,userInfo.department_name,userInfo.user_position')
-                    ->where($where)
                     ->join('jrs_user user ON user.user_id = userInfo.user_id')
                     ->paginate($pageData['pageNum'], false, [
                         'type'     => 'Bootstrap',
