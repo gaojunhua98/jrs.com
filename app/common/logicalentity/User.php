@@ -100,7 +100,7 @@ class User
     public function doGetAllUserInfo($pageData)
     {
         $userInfoObj = new UserInfoModel();
-        $userInfo = $userInfoObj->getUserInfoList($pageData);
+        $userInfo = UserInfoModel::getList([], $pageData);
         if($userInfo)
         {
             return $userInfo;
@@ -111,16 +111,16 @@ class User
     /**
      * 修改用户信息
      */
-    public function doSaveUserInfo($userId, $saveDate)
+    public function doSaveUserInfo($userInfoId, $saveDate)
     {
-        if(is_null($userId))
+        if(is_null($userInfoId))
         {
             $where = [
                 ['user_name', '=', session('user_name')]
             ];
         } else {
             $where = [
-                ['user_id', '=', $userId]
+                ['user_info_id', '=', $userInfoId]
             ];
         }
         if(!UserModel::findOne($where))
