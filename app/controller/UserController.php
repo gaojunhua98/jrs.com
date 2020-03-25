@@ -96,26 +96,4 @@ class UserController extends ControllerController
         
 	}
 
-	public function addUser()
-	{
-		$addInfo = RequestTool::postParameters('addInfo');
-		$userObj = new User();
-		$res = $userObj->doAddUser($addInfo);
-		if($res)
-		{
-			return  json([
-				'code' => 1,
-				'msg' => '添加成功',
-				'data' => []
-			]);
-		}
-		return  json([
-            'code' => 1,
-            'msg' => '添加失败',
-            'data' => [
-				'addInfo' => $addInfo,
-			]
-        ]);
-	}
-	
 }

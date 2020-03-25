@@ -137,7 +137,9 @@ class User
         $where = [
             ['user_nickname', '=', $addInfo['user_nickname']],
         ];
-        if(UserModel::findOne($where))
+        var_dump(UserInfoModel::findOne($where));
+        die;
+        if(UserInfoModel::findOne($where))
         {
             return false;
         }
