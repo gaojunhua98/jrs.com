@@ -73,7 +73,7 @@ class UserInfoController extends ControllerController
 		$where = [];
 		foreach($query as $key => $value)
 		{
-			$where[] = ['$key', 'LIKE', '%' . $value . '%'];
+			$where[] = [$key, 'LIKE', '%' . $value . '%'];
 		}
 		$list = $userObj->doGetAllUserInfo($where,$pageData);
 		if($list){
