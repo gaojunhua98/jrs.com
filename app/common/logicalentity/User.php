@@ -137,12 +137,13 @@ class User
         $where = [
             ['user_nickname', '=', $addInfo['user_nickname']],
         ];
-        var_dump(UserInfoModel::findOne($where));
-        die;
-        if(UserInfoModel::findOne($where))
+        $userInfo = UserInfoModel::findOne($where);
+        if(!empty($userInfo))
         {
+            echo 11;die;
             return false;
         }
+        echo 22;die;
         if(UserInfoModel::addOne($addInfo))
         {
             return true;
