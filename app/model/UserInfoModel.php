@@ -29,7 +29,6 @@ class UserInfoModel extends ModelModel
     public static function getList($where, $pageData)
     {
         $list = Db::name('user_info userInfo')
-                    ->field('')
                     ->where($where)
                     ->join('jrs_user user ON user.user_id = userInfo.user_id')
                     ->paginate($pageData['pageNum'], false, [
