@@ -35,7 +35,7 @@ class ModelModel extends Model
     //新增单条
     public static function addOne($data)
     {
-    	return static::strick(false)->insertGetId($data);
+    	return static::insertGetId($data);
     }
 
     //根据条件修改单条
