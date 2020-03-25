@@ -164,11 +164,14 @@ class User
             return false;
         }
 
-        $res = UserModel::addOne($addInfo);
+        $userObj = new UserModel();
+        $userInfoObj = new UserInfoModel();
+        
+        $res = $userObj0->addOneIgnore($addInfo);
         if($res)
         {
             $addInfo['user_id'] = $res;
-            UserInfoModel::addOne($addInfo);
+            $userInfoObj->addOneIgnore($addInfo);
             return true;
         }
 		return false;

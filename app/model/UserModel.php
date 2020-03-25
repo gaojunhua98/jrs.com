@@ -20,4 +20,9 @@ class UserModel extends ModelModel
         //TODO:初始化内容
     }
 
+    public function addOneIgnore($data)
+    {
+    	return Db::name('user')->strick(false)->insertGetId($data);
+    }
+
 }
