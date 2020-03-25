@@ -60,7 +60,7 @@ class UserInfoController extends ControllerController
     public function getAllUserInfo()
     {
 		$pageData = Page::getPageParameters();
-		$query = RequestTool::getParameters('query');
+		$query = json_decode(RequestTool::getParameters('query'));
 		if(!$pageData)
 		{
 	    	return  json([
@@ -71,8 +71,6 @@ class UserInfoController extends ControllerController
 		}
 		$userObj = new User();
 		$where = [];
-		var_dump($query);
-		exit;
 		if(!empty($query)) {
 			if(is_object($query)) {
 				$query = (array)$query;
