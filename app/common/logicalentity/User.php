@@ -140,10 +140,8 @@ class User
         $userInfo = UserInfoModel::findOne($where);
         if(!empty($userInfo))
         {
-            echo 11;die;
             return false;
         }
-        echo 22;die;
         if(UserInfoModel::addOne($addInfo))
         {
             return true;
