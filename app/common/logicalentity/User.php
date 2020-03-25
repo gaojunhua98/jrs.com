@@ -116,7 +116,8 @@ class User
         $where = [
             ['user_info_id', '=', $userInfoId]
         ];
-        if(!UserModel::findOne($where))
+        $userInfo = UserInfoModel::findOne($where);
+        if(empty($userInfo))
         {
             return false;
         }
