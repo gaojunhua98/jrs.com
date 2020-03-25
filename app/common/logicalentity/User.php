@@ -99,6 +99,8 @@ class User
      */
     public function doGetAllUserInfo($where, $pageData)
     {
+        var_dump($where);
+        die;
         $userInfo = UserInfoModel::getList($where, $pageData);
         if($userInfo)
         {
