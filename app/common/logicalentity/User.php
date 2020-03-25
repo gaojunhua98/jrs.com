@@ -170,7 +170,8 @@ class User
         $res = $userObj->addOneIgnore($addInfo);
         if($res)
         {
-            $addInfo['user_id'] = $res;
+            $user = UserModel::findOne($where);
+            $addInfo['user_id'] = $user['user_id'];
             $userInfoObj->addOneIgnore($addInfo);
             return true;
         }
