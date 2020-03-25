@@ -33,13 +33,9 @@ class UserInfoController extends ControllerController
 	 */
     public function getUserInfoById()
     {
-		// $userId = RequestTool::postParameters('userId');
-		$userId = input('post.userId');
-		var_dump($userId);
+		$userId = RequestTool::getParameters('userId');
 		$userObj = new User();
 		$userInfo = $userObj->doGetUserInfoById($userId);
-		var_dump($userInfo);
-		die;
 		if($userInfo){
 			return  json([
 	            'code' => 1,
