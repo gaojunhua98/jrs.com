@@ -185,7 +185,7 @@ class User
                 'department_name' => $addInfo['department_name'],
                 'user_position' => $addInfo['user_position'],
             ];
-            $UserInfoModel::addOne($userInfoData);
+            UserInfoModel::addOne($userInfoData);
             return true;
         }
 		return false;
