@@ -153,22 +153,24 @@ class User
     /**
      * 添加用户
      */
-    public function doAddUser($addDate)
+    public function doAddUser($addInfo)
     {
+        var_dump($addInfo);
+        die;
         //判断用户名是否重复
         $where = [
-            ['user_name', '=', $addDate['user_name']]
+            ['user_name', '=', $addInfo['user_name']],
         ];
         if(!UserModel::findOne($where))
         {
             return false;
         }
 
-        $res = UserModel::addOne($addDate);
+        $res = UserModel::addOne($addInfo);
         if($res)
         {
-            $saveDate['user_id'] = $res;
-            UserInfoModel::addOne($saveDate);
+            $addInfo['user_id'] = $res;
+            UserInfoModel::addOne($addInfo);
             return true;
         }
 		return false;
