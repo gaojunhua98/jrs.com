@@ -166,8 +166,8 @@ class User
 
         $userObj = new UserModel();
         $userInfoObj = new UserInfoModel();
-        
-        $res = $userObj0->addOneIgnore($addInfo);
+
+        $res = $userObj->addOneIgnore($addInfo);
         if($res)
         {
             $addInfo['user_id'] = $res;
