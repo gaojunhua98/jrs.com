@@ -22,6 +22,6 @@ class UserInfoModel extends ModelModel
     
     public function addOneIgnore($data)
     {
-    	return Db::name('user_info')->strick(false)->insertGetId($data);
+    	return Db::name('user_info')->strick(false)->insert($data);
     }
 }
