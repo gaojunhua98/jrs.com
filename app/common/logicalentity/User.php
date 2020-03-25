@@ -97,10 +97,9 @@ class User
     /**
      * 获取全部用户信息
      */
-    public function doGetAllUserInfo($pageData)
+    public function doGetAllUserInfo($where, $pageData)
     {
-        $userInfoObj = new UserInfoModel();
-        $userInfo = UserInfoModel::getList([], $pageData);
+        $userInfo = UserInfoModel::getList($where, $pageData);
         if($userInfo)
         {
             return $userInfo;

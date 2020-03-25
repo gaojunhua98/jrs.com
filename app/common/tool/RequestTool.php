@@ -10,7 +10,10 @@ class RequestTool
     public static function getParameters($parameterName)
     {
         $parameter = input('get.' . $parameterName);
-        $parameter = addslashes(trim(stripslashes($parameter)));
+        if(!is_array($parameter))
+        {
+            $parameter = trim(stripslashes($parameter));
+        }
         return $parameter;
     }
 

@@ -60,6 +60,7 @@ class UserInfoController extends ControllerController
     public function getAllUserInfo()
     {
 		$pageData = Page::getPageParameters();
+		$query = RequestTool::getParameters('query');
 		if(!$pageData)
 		{
 	    	return  json([
@@ -69,7 +70,12 @@ class UserInfoController extends ControllerController
 	        ]);
 		}
 		$userObj = new User();
-		$list = $userObj->doGetAllUserInfo($pageData);
+		$where = [];
+		foreach($query as $key => $value)
+		{
+			$where[] = ['$key', 'LIKE', '%' . $value . '%'];
+		}
+		$list = $userObj->doGetAllUserInfo($where,$pageData);
 		if($list){
 			return  json([
 	            'code' => 1,
