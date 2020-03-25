@@ -124,7 +124,7 @@ class User
     }
 
     /**
-     * 修改用户
+     * 修改用户信息
      */
     public function doSaveUserInfo($userId, $saveDate)
     {
@@ -149,4 +149,29 @@ class User
         }
 		return false;
     }
+
+    /**
+     * 添加用户
+     */
+    public function doAddUser($addDate)
+    {
+        //判断用户名是否重复
+        $where = [
+            ['user_name', '=', $addDate['user_name']]
+        ];
+        if(!UserModel::findOne($where))
+        {
+            return false;
+        }
+
+        $res = UserModel::addOne($addDate);
+        if($res)
+        {
+            $saveDate['user_id'] = $res;
+            UserInfoModel::addOne($saveDate);
+            return true;
+        }
+		return false;
+    }
+    
 }
