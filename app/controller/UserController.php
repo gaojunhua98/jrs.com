@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\common\tool\Page;
 use app\common\tool\RequestTool;
 use app\common\logicalentity\jrs\User;
 use app\common\logicalentity\jrs\UserWages;
