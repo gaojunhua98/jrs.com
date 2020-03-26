@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller\jrs;
+namespace app\controller;
 
 use app\common\tool\RequestTool;
 use app\common\logicalentity\jrs\User;

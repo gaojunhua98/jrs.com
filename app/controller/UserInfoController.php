@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller\jrs;
+namespace app\controller;
 
 use app\controller\ControllerController;
 use app\common\tool\Page;
