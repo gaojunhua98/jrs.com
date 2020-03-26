@@ -306,7 +306,7 @@ class UserController extends ControllerController
 		}
 		$where[] = ['is_del', '=', 0];
 
-		$list = $userWagesObj->doGetDepartmentList($where,$pageData);
+		$list = $userWagesObj->doGetUserWagesList($where,$pageData);
 		if($list){
 			return  json([
 	            'code' => 1,
@@ -328,7 +328,7 @@ class UserController extends ControllerController
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
 		$userWagesObj = new UserWages();
-		$res = $userWagesObj->doCreateDepartment($addInfo);
+		$res = $userWagesObj->doCreateUserWages($addInfo);
 		if($res)
 		{
 			return  json([
@@ -364,7 +364,7 @@ class UserController extends ControllerController
 		}
 		
 		$userWagesObj = new UserWages();
-		$res = $userWagesObj->doUpdateDepartment($userWagesId, $updateInfo);
+		$res = $userWagesObj->doUpdateUserWages($userWagesId, $updateInfo);
 		if($res){
 			return  json([
 	            'code' => 1,
