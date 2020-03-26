@@ -80,6 +80,7 @@ class UserInfoController extends ControllerController
 				$where[] = [$key, 'LIKE', '%' . $value . '%'];
 			}
 		}
+		$where[] = ['is_del', '=', 0];
 
 		$list = $userObj->doGetAllUserInfo($where,$pageData);
 		if($list){
