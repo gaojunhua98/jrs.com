@@ -1,11 +1,11 @@
 <?php
 
-namespace app\common\logicalentity;
+namespace app\common\logicalentity\jrs;
 
 use think\Session;
 use think\Cookie;
-use app\model\UserModel;
-use app\model\UserInfoModel;
+use app\model\jrs\UserModel;
+use app\model\jrs\UserInfoModel;
 
 /**
  * @name 用户相关逻辑层

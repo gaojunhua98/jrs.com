@@ -1,23 +1,23 @@
 <?php
 
-namespace app\model;
+namespace app\model\jrs;
 
 use app\model\ModelModel;
 use think\facade\Db;
 
 /**
- * @name 特殊考勤表
+ * @name 活动表
  */
-class SpecialUserWorkerAttendanceModel extends ModelModel
+class ActivityModel extends ModelModel
 {
     protected $connection = 'mysql';
-    protected $name = 'special_user_work_attendance';
-    protected $pk = 'special_user_work_attendance_id';
+    protected $name = 'activity';
+    protected $pk = 'activity_id';
 
     // 模型初始化
     protected static function init()
     {
         //TODO:初始化内容
     }
-
+    
 }

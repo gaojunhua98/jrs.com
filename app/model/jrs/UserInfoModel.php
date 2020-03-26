@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model;
+namespace app\model\jrs;
 
 use app\model\ModelModel;
 use think\facade\Db;

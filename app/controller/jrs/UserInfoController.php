@@ -1,11 +1,11 @@
 <?php
 
-namespace app\controller;
+namespace app\controller\jrs;
 
 use app\controller\ControllerController;
 use app\common\tool\Page;
 use app\common\tool\RequestTool;
-use app\common\logicalentity\User;
+use app\common\logicalentity\jrs\User;
 
 class UserInfoController extends ControllerController
 {

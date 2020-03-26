@@ -1,18 +1,18 @@
 <?php
 
-namespace app\model;
+namespace app\model\jrs;
 
 use app\model\ModelModel;
 use think\facade\Db;
 
 /**
- * @name 活动表
+ * @name 工资表
  */
-class ActivityModel extends ModelModel
+class UserWagesModel extends ModelModel
 {
     protected $connection = 'mysql';
-    protected $name = 'activity';
-    protected $pk = 'activity_id';
+    protected $name = 'user_wages';
+    protected $pk = 'user_wages_id';
 
     // 模型初始化
     protected static function init()
