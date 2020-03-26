@@ -504,7 +504,7 @@ class UserController extends ControllerController
 		}
 		$where[] = ['is_del', '=', 0];
 
-		$list = $specialUserWorkAttendanceObj->doGetDepartmentList($where,$pageData);
+		$list = $specialUserWorkAttendanceObj->doGetSpecialUserWorkAttendanceList($where,$pageData);
 		if($list){
 			return  json([
 	            'code' => 1,
@@ -526,7 +526,7 @@ class UserController extends ControllerController
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
 		$specialUserWorkAttendanceObj = new SpecialUserWorkAttendance();
-		$res = $specialUserWorkAttendanceObj->doCreateDepartment($addInfo);
+		$res = $specialUserWorkAttendanceObj->doCreateSpecialUserWorkAttendance($addInfo);
 		if($res)
 		{
 			return  json([
@@ -562,7 +562,7 @@ class UserController extends ControllerController
 		}
 		
 		$specialUserWorkAttendanceObj = new SpecialUserWorkAttendance();
-		$res = $specialUserWorkAttendanceObj->doUpdateDepartment($specialUserWorkAttendanceId, $updateInfo);
+		$res = $specialUserWorkAttendanceObj->doUpdateSpecialUserWorkAttendance($specialUserWorkAttendanceId, $updateInfo);
 		if($res){
 			return  json([
 	            'code' => 1,
