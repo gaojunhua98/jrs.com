@@ -8,7 +8,7 @@ use think\facade\Db;
 /**
  * @name 特殊考勤表
  */
-class SpecialUserWorkerAttendanceModel extends ModelModel
+class SpecialUserWorkAttendanceModel extends ModelModel
 {
     protected $connection = 'mysql';
     protected $name = 'special_user_work_attendance';
