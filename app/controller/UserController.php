@@ -81,6 +81,29 @@ class UserController extends ControllerController
         ]);
         
 	}
+	//响应user请求接口
+	public function getUserName()
+    {
+		$user_id = RequestTool::getParameters('token');
+		$user = User::doGetUserName($user_id);
+		if($user)
+		{
+			return  json([
+				'code' => 1,
+				'msg' => '获取成功',
+				'data' => [
+					'id' => $user['user_id'],
+					'username' => $user['user_name']
+				]
+			]);
+		}
+		return  json([
+            'code' => 1,
+            'msg' => '获取失败',
+            'data' => ''
+        ]);
+        
+	}
 
 	//TODO 活动列表获取
 	public function getActivityList()
