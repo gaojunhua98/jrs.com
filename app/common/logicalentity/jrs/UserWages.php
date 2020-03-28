@@ -33,11 +33,15 @@ class UserWages
         $userWagesInfo = UserWagesModel::findOne($where);
         if(empty($userWagesInfo))
         {
+            echo 11;
+            die;
             return false;
         }
         $res = UserWagesModel::updateOne($where, $saveDate);
         if($res)
         {
+            echo 22;
+            die;
             return true;
         }
 		return false;
