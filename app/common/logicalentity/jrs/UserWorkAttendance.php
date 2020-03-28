@@ -31,15 +31,11 @@ class UserWorkAttendance
             ['user_work_attendance_id', '=', $userWorkAttendanceId]
         ];
         $userWorkAttendanceInfo = UserWorkAttendanceModel::findOne($where);
-        var_dump($userWorkAttendanceInfo);
-        die;
         if(empty($userWorkAttendanceInfo))
         {
             return false;
         }
         $res = UserWorkAttendanceModel::updateOne($where, $saveDate);
-        var_dump($res);
-        die;
         if($res)
         {
             return true;

@@ -33,17 +33,15 @@ class UserWages
         $userWagesInfo = UserWagesModel::findOne($where);
         if(empty($userWagesInfo))
         {
-            echo 11;
-            die;
             return false;
         }
+        var_dump($where, $saveDate);
+        die;
         $res = UserWagesModel::updateOne($where, $saveDate);
         if($res)
         {
             return true;
         }
-        echo 22;
-        die;
 		return false;
     }
 
