@@ -35,11 +35,7 @@ class UserWages
         {
             return false;
         }
-        var_dump($saveDate);
-        $obj = new UserWagesModel();
-        $res = $obj::updateOne($where, $saveDate);
-        echo $obj->getLastSql();
-        die;
+        $res = UserWagesModel::updateOne($where, $saveDate);
         if($res)
         {
             return true;
