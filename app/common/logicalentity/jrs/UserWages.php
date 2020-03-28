@@ -32,6 +32,7 @@ class UserWages
         ];
         $userWagesInfo = UserWagesModel::findOne($where);
         var_dump($userWagesInfo);
+        die;
         if(empty($userWagesInfo))
         {
             return false;
