@@ -7,6 +7,7 @@ use app\common\tool\RequestTool;
 use app\common\logicalentity\jrs\User;
 use app\common\logicalentity\jrs\UserWages;
 use app\common\logicalentity\jrs\Activity;
+use app\common\logicalentity\jrs\Recruit;
 use app\common\logicalentity\jrs\Department;
 use app\common\logicalentity\jrs\UserWorkAttendance;
 use app\common\logicalentity\jrs\SpecialUserWorkAttendance;
@@ -600,4 +601,102 @@ class UserController extends ControllerController
 		]);
 	}
 
+	//TODO 特殊考勤列表获取
+	public function getRecruitList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少分页参数',
+				'data' => []
+			]);
+		}
+		$recruitObj = new Recruit();
+		$where = [];
+		if(!empty($query)) {
+			if(is_object($query)) {
+				$query = (array)$query;
+			}
+			foreach($query as $key => $value)
+			{
+				$where[] = [$key, 'LIKE', '%' . $value . '%'];
+			}
+		}
+		$where[] = ['is_del', '=', 0];
+
+		$list = $recruitObj->doGetRecruitList($where,$pageData);
+		if($list){
+			return  json([
+				'code' => 1,
+				'msg' => '获取成功',
+				'data' => [
+					'list' => $list
+				]
+			]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	//TODO 特殊考勤创建
+	public function createRecruit()
+	{
+		$addInfo = RequestTool::postParameters('addInfo');
+		$recruitObj = new Recruit();
+		$res = $recruitObj->doCreateRecruit($addInfo);
+		if($res)
+		{
+			return  json([
+				'code' => 1,
+				'msg' => '添加成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '添加失败',
+			'data' => [
+				'addInfo' => $addInfo,
+			]
+		]);
+	}
+
+	//TODO 特殊考勤修改
+	public function updateSpecialUserWorkAttendance()
+	{
+		$recruitId = RequestTool::postParameters('recruit_id');
+		$updateInfo = RequestTool::postParameters('updateInfo');
+		if(empty($updateInfo)) 
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少参数',
+				'data' => [
+						'recruit_id' => $recruitId,
+						'updateInfo' => $updateInfo,
+					]
+			]);
+		}
+		
+		$recruitObj = new Recruit();
+		$res = $recruitObj->doUpdateRecruit($recruitId, $updateInfo);
+		if($res){
+			return  json([
+				'code' => 1,
+				'msg' => '修改成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '修改失败',
+			'data' => []
+		]);
+	}
 }
