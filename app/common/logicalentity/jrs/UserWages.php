@@ -35,9 +35,8 @@ class UserWages
         {
             return false;
         }
-        var_dump($where, $saveDate);
-        die;
         $res = UserWagesModel::updateOne($where, $saveDate);
+        echo UserWagesModel::_sql();die;
         if($res)
         {
             return true;
