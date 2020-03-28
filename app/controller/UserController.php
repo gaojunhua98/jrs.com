@@ -388,8 +388,6 @@ class UserController extends ControllerController
 		
 		$userWagesObj = new UserWages();
 		$res = $userWagesObj->doUpdateUserWages($userWagesId, $updateInfo);
-		var_dump($res);
-		die;
 		if($res){
 			return  json([
 	            'code' => 1,
