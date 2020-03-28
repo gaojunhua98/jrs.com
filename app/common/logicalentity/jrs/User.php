@@ -108,7 +108,7 @@ class User
     }
 
     /**
-     * 修改用户信息
+     * 修改用户信息表信息
      */
     public function doSaveUserInfo($userInfoId, $saveDate)
     {
@@ -129,7 +129,7 @@ class User
     }
 
     /**
-     * 添加用户
+     * 添加用户信息表
      */
     public function doAddUser($addInfo)
     {
@@ -149,4 +149,24 @@ class User
 		return false;
     }
     
+    /**
+     * 修改用户表信息
+     */
+    public function doUpdateUser($userId, $saveDate)
+    {
+        $where = [
+            ['user_id', '=', $userId]
+        ];
+        $userInfo = UserInfoModel::findOne($where);
+        if(empty($userInfo))
+        {
+            return false;
+        }
+        $res = UserInfoModel::updateOne($where, $saveDate);
+        if($res != false)
+        {
+            return true;
+        }
+		return false;
+    }
 }
