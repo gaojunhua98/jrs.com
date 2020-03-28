@@ -36,7 +36,7 @@ class SpecialUserWorkAttendance
             return false;
         }
         $res = SpecialUserWorkAttendanceModel::updateOne($where, $saveDate);
-        if($res)
+        if($res != false)
         {
             return true;
         }

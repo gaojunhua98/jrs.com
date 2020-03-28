@@ -36,7 +36,7 @@ class Department
             return false;
         }
         $res = DepartmentModel::updateOne($where, $saveDate);
-        if($res)
+        if($res != false)
         {
             return true;
         }

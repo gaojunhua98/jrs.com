@@ -36,7 +36,7 @@ class Activity
             return false;
         }
         $res = ActivityModel::updateOne($where, $saveDate);
-        if($res)
+        if($res != false)
         {
             return true;
         }

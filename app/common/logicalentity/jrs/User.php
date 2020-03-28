@@ -121,7 +121,7 @@ class User
             return false;
         }
         $res = UserInfoModel::updateOne($where, $saveDate);
-        if($res)
+        if($res != false)
         {
             return true;
         }

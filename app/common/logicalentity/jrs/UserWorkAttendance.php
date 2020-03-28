@@ -36,7 +36,7 @@ class UserWorkAttendance
             return false;
         }
         $res = UserWorkAttendanceModel::updateOne($where, $saveDate);
-        if($res)
+        if($res != false)
         {
             return true;
         }
