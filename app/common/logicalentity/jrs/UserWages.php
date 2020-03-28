@@ -40,10 +40,10 @@ class UserWages
         $res = UserWagesModel::updateOne($where, $saveDate);
         if($res)
         {
-            echo 22;
-            die;
             return true;
         }
+        echo 22;
+        die;
 		return false;
     }
 
