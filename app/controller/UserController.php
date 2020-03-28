@@ -601,7 +601,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 特殊考勤列表获取
+	//TODO 招聘列表获取
 	public function getRecruitList()
 	{
 		$pageData = Page::getPageParameters();
@@ -644,7 +644,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 特殊考勤创建
+	//TODO 招聘考勤创建
 	public function createRecruit()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -667,8 +667,8 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 特殊考勤修改
-	public function updateSpecialUserWorkAttendance()
+	//TODO 招聘考勤修改
+	public function updateRecruit()
 	{
 		$recruitId = RequestTool::postParameters('recruit_id');
 		$updateInfo = RequestTool::postParameters('updateInfo');
