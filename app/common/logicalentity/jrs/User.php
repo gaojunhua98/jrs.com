@@ -157,12 +157,12 @@ class User
         $where = [
             ['user_id', '=', $userId]
         ];
-        $userInfo = UserInfoModel::findOne($where);
+        $userInfo = UserModel::findOne($where);
         if(empty($userInfo))
         {
             return false;
         }
-        $res = UserInfoModel::updateOne($where, $saveDate);
+        $res = UserModel::updateOne($where, $saveDate);
         if($res != false)
         {
             return true;
