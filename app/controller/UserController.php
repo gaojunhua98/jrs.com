@@ -139,7 +139,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 活动列表获取
+	// 活动列表获取
 	public function getActivityList()
 	{
 		$pageData = Page::getPageParameters();
@@ -182,7 +182,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 活动创建
+	// 活动创建
 	public function createActivity()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -205,7 +205,7 @@ class UserController extends ControllerController
         ]);
 	}
 
-	//TODO 活动修改
+	// 活动修改
     public function updateActivity()
     {
     	$activityId = RequestTool::postParameters('activity_id');
@@ -238,7 +238,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 部门列表获取
+	// 部门列表获取
 	public function getDepartmentList()
 	{
 		$pageData = Page::getPageParameters();
@@ -281,7 +281,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 部门创建
+	// 部门创建
 	public function createDepartment()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -304,7 +304,7 @@ class UserController extends ControllerController
         ]);
 	}
 
-	//TODO 部门修改
+	// 部门修改
 	public function updateDepartment()
 	{
 		$departmentId = RequestTool::postParameters('department_id');
@@ -337,7 +337,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 工资列表获取
+	// 工资列表获取
 	public function getUserWagesList()
 	{
 		$pageData = Page::getPageParameters();
@@ -380,7 +380,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 工资创建
+	// 工资创建
 	public function createUserWages()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -403,7 +403,7 @@ class UserController extends ControllerController
         ]);
 	}
 
-	//TODO 工资修改
+	// 工资修改
 	public function updateUserWages()
 	{
 		$userWagesId = RequestTool::postParameters('user_wages_id');
@@ -436,7 +436,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 考勤列表获取
+	// 考勤列表获取
 	public function getUserWorkAttendanceList()
 	{
 		$pageData = Page::getPageParameters();
@@ -479,7 +479,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 考勤创建
+	// 考勤创建
 	public function createUserWorkAttendance()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -502,7 +502,7 @@ class UserController extends ControllerController
         ]);
 	}
 
-	//TODO 考勤修改
+	// 考勤修改
 	public function updateUserWorkAttendance()
 	{
 		$userWorkAttendanceId = RequestTool::postParameters('user_work_attendance_id');
@@ -535,7 +535,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 特殊考勤列表获取
+	// 特殊考勤列表获取
 	public function getSpecialUserWorkAttendanceList()
 	{
 		$pageData = Page::getPageParameters();
@@ -578,7 +578,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 特殊考勤创建
+	// 特殊考勤创建
 	public function createSpecialUserWorkAttendance()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -601,7 +601,7 @@ class UserController extends ControllerController
         ]);
 	}
 
-	//TODO 特殊考勤修改
+	// 特殊考勤修改
 	public function updateSpecialUserWorkAttendance()
 	{
 		$specialUserWorkAttendanceId = RequestTool::postParameters('special_user_work_attendance_id');
@@ -634,7 +634,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 招聘列表获取
+	// 招聘列表获取
 	public function getRecruitList()
 	{
 		$pageData = Page::getPageParameters();
@@ -677,7 +677,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 招聘考勤创建
+	// 招聘考勤创建
 	public function createRecruit()
 	{
 		$addInfo = RequestTool::postParameters('addInfo');
@@ -700,7 +700,7 @@ class UserController extends ControllerController
 		]);
 	}
 
-	//TODO 招聘考勤修改
+	// 招聘考勤修改
 	public function updateRecruit()
 	{
 		$recruitId = RequestTool::postParameters('recruit_id');

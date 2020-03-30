@@ -147,4 +147,45 @@ class GjhController extends ControllerController
 		]);
 	}
 	
+	//TODO 获取店铺列表
+	public function getShopList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$activityObj = new Activity();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+
+		$list = $activityObj->doGetActivityList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	//TODO 获取仓库列表
+
+	//TODO 获取属性列表
+
+	//TODO 获取商品SPU列表
+
+	//TODO 获取商品SKU列表
 }

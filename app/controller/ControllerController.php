@@ -7,8 +7,18 @@ use app\model\UsersModel as User;
 
 class ControllerController extends BaseController
 {
-    public function test()
+    public function getWhere($query)
     {
-
+		$where = [];
+		if(!empty($query)) {
+			if(is_object($query)) {
+				$query = (array)$query;
+			}
+			foreach($query as $key => $value)
+			{
+				$where[] = [$key, 'LIKE', '%' . $value . '%'];
+			}
+        }
+        return $where;
     }
 }
