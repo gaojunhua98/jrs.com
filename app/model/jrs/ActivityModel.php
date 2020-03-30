@@ -10,7 +10,7 @@ use think\facade\Db;
  */
 class ActivityModel extends ModelModel
 {
-    protected $connection = 'mysql';
+    protected $connection = 'jrs';
     protected $name = 'activity';
     protected $pk = 'activity_id';
 

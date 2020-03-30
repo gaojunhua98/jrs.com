@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model\jrs;
+namespace app\model\gjh;
 
 use app\model\ModelModel;
 use think\facade\Db;
@@ -10,7 +10,7 @@ use think\facade\Db;
  */
 class UserModel extends ModelModel
 {
-    protected $connection = 'jrs';
+    protected $connection = 'gjh';
     protected $name = 'user';
     protected $pk = 'user_id';
 

@@ -10,7 +10,7 @@ use think\facade\Db;
  */
 class DepartmentModel extends ModelModel
 {
-    protected $connection = 'mysql';
+    protected $connection = 'jrs';
     protected $name = 'department';
     protected $pk = 'department_id';
 

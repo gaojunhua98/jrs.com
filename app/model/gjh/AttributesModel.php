@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model\jrs;
+namespace app\model\gjh;
 
 use app\model\ModelModel;
 use think\facade\Db;
@@ -8,11 +8,11 @@ use think\facade\Db;
 /**
  * @name 用户登陆表
  */
-class UserModel extends ModelModel
+class AttributesModel extends ModelModel
 {
-    protected $connection = 'jrs';
-    protected $name = 'user';
-    protected $pk = 'user_id';
+    protected $connection = 'gjh';
+    protected $name = 'attributes';
+    protected $pk = 'attributes_id';
 
     // 模型初始化
     protected static function init()
@@ -22,7 +22,7 @@ class UserModel extends ModelModel
 
     public function addOneIgnore($data)
     {
-    	return Db::name('user')->strick(false)->insert($data);
+    	return Db::name('attributes')->strick(false)->insert($data);
     }
 
 }

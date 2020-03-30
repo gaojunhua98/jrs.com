@@ -10,7 +10,7 @@ use think\facade\Db;
  */
 class UserWagesModel extends ModelModel
 {
-    protected $connection = 'mysql';
+    protected $connection = 'jrs';
     protected $name = 'user_wages';
     protected $pk = 'user_wages_id';
 

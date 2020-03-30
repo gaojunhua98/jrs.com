@@ -10,7 +10,7 @@ use think\facade\Db;
  */
 class SpecialUserWorkAttendanceModel extends ModelModel
 {
-    protected $connection = 'mysql';
+    protected $connection = 'jrs';
     protected $name = 'special_user_work_attendance';
     protected $pk = 'special_user_work_attendance_id';
 
