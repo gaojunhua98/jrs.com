@@ -12,7 +12,7 @@ use app\model\gjh\ShopModel;
 class Shop
 {
     /**
-     * 获取全部店铺信息
+     * 获取店铺信息列表
      */
     public function doGetActivityList($where, $pageData)
     {

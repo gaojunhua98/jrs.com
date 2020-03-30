@@ -12,5 +12,16 @@ use app\model\gjh\AttributesValueModel;
  */
 class Attributes
 {
-
+    /**
+     * 获取商品信息列表
+     */
+    public function doGetAttributesList($where, $pageData)
+    {
+        $attributesInfo = AttributesModel::getList($where, $pageData);
+        if($attributesInfo)
+        {
+            return $attributesInfo;
+        }
+		return false;
+    }
 }

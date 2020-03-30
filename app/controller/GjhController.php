@@ -6,6 +6,11 @@ use app\controller\ControllerController;
 use app\common\tool\Page;
 use app\common\tool\RequestTool;
 use app\common\logicalentity\gjh\User;
+use app\common\logicalentity\gjh\Attributes;
+use app\common\logicalentity\gjh\Depository;
+use app\common\logicalentity\gjh\Goods;
+use app\common\logicalentity\gjh\GoodsSku;
+use app\common\logicalentity\gjh\Shop;
 
 class GjhController extends ControllerController
 {
@@ -146,6 +151,40 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
+
+	//TODO 获取用户列表
+	public function getUserList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$userObj = new User();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+
+		$list = $userObj->doGetUserList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 	
 	//TODO 获取店铺列表
 	public function getShopList()
@@ -182,10 +221,136 @@ class GjhController extends ControllerController
 	}
 
 	//TODO 获取仓库列表
+	public function getDepositoryList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$depositoryObj = new Depository();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
 
+		$list = $depositoryObj->doGetDepositoryList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 	//TODO 获取属性列表
+	public function getAttributesList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$attributesObj = new Attributes();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+
+		$list = $attributesObj->doGetAttributesList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 
 	//TODO 获取商品SPU列表
+	public function getGoodsList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$goodsObj = new Goods();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
 
+		$list = $goodsObj->doGetGoodsList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 	//TODO 获取商品SKU列表
+	public function getGoodsSkuList()
+	{
+		$pageData = Page::getPageParameters();
+		$query = json_decode(RequestTool::getParameters('query'));
+		if(!$pageData)
+		{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少分页参数',
+	            'data' => []
+	        ]);
+		}
+		$goodsSkuObj = new GoodsSku();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+
+		$list = $goodsSkuObj->doGetGoodsSkuList($where,$pageData);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
 }

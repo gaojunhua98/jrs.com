@@ -11,5 +11,16 @@ use app\model\gjh\DepositoryModel;
  */
 class Depository
 {
-
+    /**
+     * 获取商品信息列表
+     */
+    public function doGetDepositoryList($where, $pageData)
+    {
+        $depositoryInfo = DepositoryModel::getList($where, $pageData);
+        if($depositoryInfo)
+        {
+            return $depositoryInfo;
+        }
+		return false;
+    }
 }

@@ -11,5 +11,16 @@ use app\model\gjh\GoodsModel;
  */
 class Goods
 {
-
+    /**
+     * 获取商品信息列表
+     */
+    public function doGetGoodsList($where, $pageData)
+    {
+        $goodsInfo = GoodsModel::getList($where, $pageData);
+        if($goodsInfo)
+        {
+            return $goodsInfo;
+        }
+		return false;
+    }
 }

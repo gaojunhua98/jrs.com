@@ -97,4 +97,17 @@ class User
         }
 		return false;
     }
+
+    /**
+     * 获取用户信息列表
+     */
+    public function doGetUserList($where, $pageData)
+    {
+        $userInfo = UserModel::getList($where, $pageData);
+        if($userInfo)
+        {
+            return $userInfo;
+        }
+		return false;
+    }
 }
