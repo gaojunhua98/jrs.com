@@ -153,16 +153,7 @@ class UserController extends ControllerController
 	        ]);
 		}
 		$activityObj = new Activity();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $activityObj->doGetActivityList($where,$pageData);
@@ -252,16 +243,7 @@ class UserController extends ControllerController
 	        ]);
 		}
 		$departmentObj = new Department();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $departmentObj->doGetDepartmentList($where,$pageData);
@@ -351,16 +333,7 @@ class UserController extends ControllerController
 	        ]);
 		}
 		$userWagesObj = new UserWages();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $userWagesObj->doGetUserWagesList($where,$pageData);
@@ -450,16 +423,7 @@ class UserController extends ControllerController
 	        ]);
 		}
 		$userWorkAttendanceObj = new UserWorkAttendance();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $userWorkAttendanceObj->doGetUserWorkAttendanceList($where,$pageData);
@@ -549,16 +513,7 @@ class UserController extends ControllerController
 	        ]);
 		}
 		$specialUserWorkAttendanceObj = new SpecialUserWorkAttendance();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $specialUserWorkAttendanceObj->doGetSpecialUserWorkAttendanceList($where,$pageData);
@@ -648,16 +603,7 @@ class UserController extends ControllerController
 			]);
 		}
 		$recruitObj = new Recruit();
-		$where = [];
-		if(!empty($query)) {
-			if(is_object($query)) {
-				$query = (array)$query;
-			}
-			foreach($query as $key => $value)
-			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
-			}
-		}
+		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
 		$list = $recruitObj->doGetRecruitList($where,$pageData);
