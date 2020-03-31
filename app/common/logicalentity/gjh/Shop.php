@@ -5,6 +5,7 @@ namespace app\common\logicalentity\gjh;
 use think\Session;
 use think\Cookie;
 use app\model\gjh\ShopModel;
+use app\common\logicalentity\gjh\GoodsSku;
 
 /**
  * @name 店铺相关逻辑层
@@ -16,9 +17,15 @@ class Shop
      */
     public function doGetShopList($where, $pageData)
     {
+        $goodsSkuObj = new GoodsSku();
         $shopInfo = ShopModel::getList($where, $pageData);
         if($shopInfo)
         {
+            foreach($shopInfo['data'] as &$one)
+            {
+                $one['skuNum'] = $goodsSkuObj->getSkuNumByShopId($one['shop_id']);
+                $one['inventory'] = $goodsSkuObj->getInventoryByShopId($one['shop_id']);
+            }
             return $shopInfo;
         }
 		return false;

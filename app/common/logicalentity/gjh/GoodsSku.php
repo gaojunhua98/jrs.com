@@ -19,8 +19,118 @@ class GoodsSku
         $goodsSkuInfo = GoodsSkuModel::getList($where, $pageData);
         if($goodsSkuInfo)
         {
+            foreach($goodsSkuInfo['data'] as &$one)
+            {
+                $one['sku_attributes'] = json_decode($one['sku_attributes']);
+            }
             return $goodsSkuInfo;
         }
 		return false;
+    }
+
+    /**
+     * @name 通过店铺获取SKU量
+     */
+    public function getSkuNumByShopId($shopId)
+    {
+        $where = [
+            ['shop_id', '=', $shopId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetSkuNum($where);
+        return $count;
+    }
+
+    /**
+     * @name 通过仓库获取SKU量
+     */
+    public function getSkuNumByDepositoryId($depositoryId)
+    {
+        $where = [
+            ['depository_id', '=', $depositoryId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetSkuNum($where);
+        return $count;
+    }
+
+
+    /**
+     * @name 通过商品获取SKU量
+     */
+    public function getSkuNumByGoodsId($goodsId)
+    {
+        $where = [
+            ['goods_id', '=', $goodsId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetSkuNum($where);
+        return $count;
+    }
+
+    /**
+     * @name  根据条件获取SKU量
+     */
+    public function doGetSkuNum($where)
+    {
+        return GoodsSkuModel::getCount($where);
+    }
+
+    /**
+     * @name 通过店铺获取库存量
+     */
+    public function getInventoryByShopId($shopId)
+    {
+        $where = [
+            ['shop_id', '=', $shopId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetInventory($where);
+        return $count;
+    }
+
+    /**
+     * @name 通过仓库获取库存量
+     */
+    public function getInventoryByDepositoryId($depositoryId)
+    {
+        $where = [
+            ['depository_id', '=', $depositoryId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetInventory($where);
+        return $count;
+    }
+
+
+    /**
+     * @name 通过商品获取库存量
+     */
+    public function getInventoryByGoodsId($goodsId)
+    {
+        $where = [
+            ['goods_id', '=', $goodsId],
+            ['is_del', '=', 0],
+        ];
+        $count = $this->doGetInventory($where);
+        return $count;
+    }
+
+    /**
+     * @name  根据条件获取库存量
+     */
+    public function doGetInventory($where)
+    {
+        $inventory = 0;
+        $skuInfos = GoodsSkuModel::selectAny($where);
+        if(!empty($skuInfos))
+        {
+            foreach($skuInfos as $one)
+            {
+                $inventory += $one['sku_num'];
+            }
+        }
+
+        return $inventory;
     }
 }

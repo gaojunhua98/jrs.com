@@ -57,4 +57,9 @@ class ModelModel extends Model
                      ->toArray();
         return (array)$list;
     }
+
+    public static function getCount($where)
+    {
+        return static::where($where)->count();
+    }
 }
