@@ -287,6 +287,31 @@ class GjhController extends ControllerController
 		]);
 	}
 
+	//TODO 获取全部属性
+	public function getAllAttributes()
+	{
+		// $query = json_decode(RequestTool::getParameters('query'));
+
+		// $where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+
+		$list = $attributesObj->doGetAllAttributes($where);
+		if($list){
+			return  json([
+				'code' => 1,
+				'msg' => '获取成功',
+				'data' => [
+					'list' => $list
+				]
+			]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
 	//TODO 获取商品SPU列表
 	public function getGoodsList()
 	{
