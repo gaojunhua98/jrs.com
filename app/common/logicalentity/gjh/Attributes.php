@@ -18,7 +18,7 @@ class Attributes
     public function doGetAttributesList($where, $pageData)
     {
         $attributesInfo = AttributesModel::getList($where, $pageData);
-        foreach($attributesInfo['data'] as &$one)
+        foreach($attributesInfo->data as &$one)
         {
             $where = [
                 ['attributes_id', '=', $one['attributes_id']],
