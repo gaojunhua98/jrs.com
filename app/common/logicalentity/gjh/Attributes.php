@@ -21,6 +21,8 @@ class Attributes
 
         if($attributesInfo)
         {
+            var_dump($attributesInfo);
+            die;
             foreach($attributesInfo['data'] as &$one)
             {
                 $where = [
