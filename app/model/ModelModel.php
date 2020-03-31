@@ -29,7 +29,7 @@ class ModelModel extends Model
     //根据条件查询多条
     public static function selectAny($where)
     {
-    	return static::where($where)->select()->toArray();
+    	return (array)static::where($where)->select()->toArray();
     }
 
     //新增单条
