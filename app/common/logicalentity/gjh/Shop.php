@@ -14,7 +14,7 @@ class Shop
     /**
      * 获取店铺信息列表
      */
-    public function doGetActivityList($where, $pageData)
+    public function doGetShopList($where, $pageData)
     {
         $shopInfo = ShopModel::getList($where, $pageData);
         if($shopInfo)
@@ -27,7 +27,7 @@ class Shop
         /**
      * 修改店铺信息
      */
-    public function doUpdateActivity($shopId, $saveDate)
+    public function doUpdateShop($shopId, $saveDate)
     {
         $where = [
             ['shop_id', '=', $shopId]
@@ -48,7 +48,7 @@ class Shop
     /**
      * 添加店铺
      */
-    public function doCreateActivity($addInfo)
+    public function doCreateShop($addInfo)
     {
         if(ShopModel::addOne($addInfo))
         {
