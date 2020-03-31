@@ -21,8 +21,6 @@ class Attributes
 
         if($attributesInfo)
         {
-            var_dump($attributesInfo);
-            die;
             foreach($attributesInfo['data'] as &$one)
             {
                 $where = [
@@ -45,7 +43,7 @@ class Attributes
 
         if($attributesInfo)
         {
-            foreach($attributesInfo['data'] as &$one)
+            foreach($attributesInfo as &$one)
             {
                 $where = [
                     ['attributes_id', '=', $one['attributes_id']],
