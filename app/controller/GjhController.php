@@ -199,11 +199,11 @@ class GjhController extends ControllerController
 	            'data' => []
 	        ]);
 		}
-		$activityObj = new Activity();
+		$shopObj = new Shop();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 
-		$list = $activityObj->doGetActivityList($where,$pageData);
+		$list = $shopObj->doGetShopList($where,$pageData);
 		if($list){
 			return  json([
 	            'code' => 1,
