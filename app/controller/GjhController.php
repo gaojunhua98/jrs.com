@@ -294,7 +294,7 @@ class GjhController extends ControllerController
 
 		// $where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-
+		$attributesObj = new Attributes();
 		$list = $attributesObj->doGetAllAttributes($where);
 		if($list){
 			return  json([
