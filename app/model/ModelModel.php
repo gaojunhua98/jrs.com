@@ -54,6 +54,6 @@ class ModelModel extends Model
                         'page' => $pageData['page'],
             
                      ]);
-        return $list;
+        return (array)$list;
     }
 }
