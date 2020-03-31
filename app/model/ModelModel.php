@@ -53,7 +53,8 @@ class ModelModel extends Model
                         'var_page' => 'page',
                         'page' => $pageData['page'],
             
-                     ]);
+                     ])
+                     ->toArray();
         return (array)$list;
     }
 }
