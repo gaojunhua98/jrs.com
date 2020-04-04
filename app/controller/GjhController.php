@@ -119,39 +119,6 @@ class GjhController extends ControllerController
         
 	}
 
-	//修改密码接口
-	public function UpdateUser()
-	{
-		$userId = RequestTool::postParameters('user_id');
-		$updateInfo = RequestTool::postParameters('updateInfo');
-		if(empty($updateInfo)) 
-		{
-			return  json([
-				'code' => -1001,
-				'msg' => '缺少参数',
-				'data' => [
-						'user_id' => $userId,
-						'updateInfo' => $updateInfo,
-					]
-			]);
-		}
-		
-		$userObj = new User();
-		$res = $userObj->doUpdateUser($userId, $updateInfo);
-		if($res){
-			return  json([
-				'code' => 1,
-				'msg' => '修改成功',
-				'data' => []
-			]);
-		}
-		return  json([
-			'code' => -2001,
-			'msg' => '修改失败',
-			'data' => []
-		]);
-	}
-
 	//TODO 获取用户列表
 	public function getUserList()
 	{
