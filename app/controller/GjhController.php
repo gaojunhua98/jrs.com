@@ -185,6 +185,44 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
+
+	//TODO 更新用户
+	public function saveUser()
+	{
+		$userId = RequestTool::postParameters('user_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+    	{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少参数',
+	            'data' => [
+	            		'user_id' => $userId,
+	            		'saveInfo' => $saveInfo,
+	            	]
+	        ]);
+		}
+		$userObj = new User();
+		if(empty($userId))
+		{
+			$res = $userObj->doCreateUser($saveInfo);
+		} else {
+			$res = $userObj->doUpdateUser($userId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+	            'code' => 1,
+	            'msg' => '操作成功',
+	            'data' => []
+	        ]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
 	
 	//TODO 获取店铺列表
 	public function getShopList()

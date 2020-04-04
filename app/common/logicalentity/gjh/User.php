@@ -99,6 +99,18 @@ class User
     }
 
     /**
+     * 添加用户
+     */
+    public function doCreateUser($addInfo)
+    {
+        if(UserModel::addOne($addInfo))
+        {
+            return true;
+        }
+		return false;
+    }
+
+    /**
      * 获取用户信息列表
      */
     public function doGetUserList($where, $pageData)
