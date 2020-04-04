@@ -309,7 +309,7 @@ class GjhController extends ControllerController
 	        ]);
 		}
 		$depositoryObj = new Depository();
-		if(empty($shopId))
+		if(empty($depositoryId))
 		{
 			$res = $depositoryObj->doCreateDepository($saveInfo);
 		} else {
