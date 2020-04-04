@@ -291,6 +291,45 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
+
+	//TODO 更新仓库
+	public function saveDepository()
+	{
+		$depositoryId = RequestTool::postParameters('depository_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+    	{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少参数',
+	            'data' => [
+	            		'depository_id' => $depositoryId,
+	            		'saveInfo' => $saveInfo,
+	            	]
+	        ]);
+		}
+		$depositoryObj = new Depository();
+		if(empty($shopId))
+		{
+			$res = $depositoryObj->doCreateDepository($saveInfo);
+		} else {
+			$res = $depositoryObj->doUpdateDepository($depositoryId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+	            'code' => 1,
+	            'msg' => '操作成功',
+	            'data' => []
+	        ]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
+
 	//TODO 获取属性列表
 	public function getAttributesList()
 	{
