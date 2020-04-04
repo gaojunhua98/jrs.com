@@ -31,7 +31,7 @@ class Shop
 		return false;
     }
 
-        /**
+    /**
      * 修改店铺信息
      */
     public function doUpdateShop($shopId, $saveDate)

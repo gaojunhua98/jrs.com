@@ -220,6 +220,44 @@ class GjhController extends ControllerController
 		]);
 	}
 
+	//TODO 更新店铺
+	public function saveShop()
+	{
+		$shopId = RequestTool::postParameters('shop_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+    	{
+	    	return  json([
+	            'code' => -1001,
+	            'msg' => '缺少参数',
+	            'data' => [
+	            		'shop_id' => $shopId,
+	            		'saveInfo' => $saveInfo,
+	            	]
+	        ]);
+		}
+		$shopObj = new Shop();
+		if(empty($shopId))
+		{
+			$res = $shopObj->doCreateShop($saveInfo);
+		} else {
+			$res = $shopObj->doUpdateShop($shopId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+	            'code' => 1,
+	            'msg' => '操作成功',
+	            'data' => []
+	        ]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
+
 	//TODO 获取仓库列表
 	public function getDepositoryList()
 	{
