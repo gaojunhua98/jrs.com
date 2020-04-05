@@ -25,7 +25,7 @@ class Goods
             {
                 $one['skuNum'] = $goodsSkuObj->getSkuNumByGoodsId($one['goods_id']);
                 $one['inventory'] = $goodsSkuObj->getInventoryByGoodsId($one['goods_id']);
-                $one['goods_attributes'] = json_decode($one['goods_attributes']);
+                $one['goods_attributes'] = array_values(json_decode($one['goods_attributes']));
             }
             return $goodsInfo;
         }
