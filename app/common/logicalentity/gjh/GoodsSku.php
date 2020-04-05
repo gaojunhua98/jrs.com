@@ -206,7 +206,8 @@ class GoodsSku
                 $selectList[] = $oneAattributes . ':' . $oneAttributesValue['attributes_value'];
             }
         }
-
+        var_dump($selectList);
+        die;
         return $selectList;
     }
 }
