@@ -596,13 +596,13 @@ class GjhController extends ControllerController
 		if($res){
 			return  json([
 				'code' => 1,
-				'msg' => '操作成功',
-				'data' => []
+				'msg' => '获取成功',
+				'data' => $res
 			]);
 		}
 		return  json([
 			'code' => -2001,
-			'msg' => '操作失败',
+			'msg' => '获取失败',
 			'data' => []
 		]);
 	}
