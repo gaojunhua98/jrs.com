@@ -575,4 +575,35 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
+
+	//TODO 根据商品名获取可选属性
+	public function getAttributesByGoodsName()
+	{
+		$goodsName = RequestTool::postParameters('goods_name');
+		if(empty($goodsName)) 
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少参数',
+				'data' => [
+						'goods_name' => $goodsName,
+					]
+			]);
+		}
+		$goodsSkuObj = new GoodsSku();
+		$res = $goodsSkuObj->doGetAttributesByGoodsName($goodsName);
+
+		if($res){
+			return  json([
+				'code' => 1,
+				'msg' => '操作成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
 }

@@ -210,4 +210,38 @@ class GoodsSku
 
         return $selectList;
     }
+
+    /**
+     * @name 通过goodsName获取选项
+     */
+    public function doGetAttributesByGoodsName($goodsName)
+    {
+        $selectList = [];
+        $where = [
+            ['goods_name', '=', $goodsName],
+            ['is_del', '=', 0],
+        ];
+        $goodsInfo = GoodsModel::findOne($where);
+        $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
+
+        foreach($goodsAattributes as $oneAattributes)
+        {
+            $attributesWhere = [
+                ['attributes_name', '=', $oneAattributes],
+                ['is_del', '=', 0],
+            ];
+            $attributesInfo = AttributesModel::findOne($attributesWhere);
+            $attributesValueWhere = [
+                ['attributes_id', '=', $attributesInfo['attributes_id']],
+                ['is_del', '=', 0],
+            ];
+            $attributesValueInfos = AttributesValueModel::selectAny($attributesValueWhere);
+            foreach($attributesValueInfos as $oneAttributesValue)
+            {
+                $selectList[$oneAattributes][] = $oneAttributesValue['attributes_value'];
+            }
+        }
+
+        return $selectList;
+    }
 }
