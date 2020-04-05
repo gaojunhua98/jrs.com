@@ -45,6 +45,7 @@ class Goods
         {
             return false;
         }
+        $saveDate['goods_attributes'] = json_encode($saveDate['goods_attributes']);
         $res = GoodsModel::updateOne($where, $saveDate);
         if($res != false)
         {
@@ -58,6 +59,7 @@ class Goods
      */
     public function doCreateGoods($addInfo)
     {
+        $addInfo['goods_attributes'] = json_encode($addInfo['goods_attributes']);
         if(GoodsModel::addOne($addInfo))
         {
             return true;
