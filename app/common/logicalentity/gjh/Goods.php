@@ -26,6 +26,18 @@ class Goods
                 $one['skuNum'] = $goodsSkuObj->getSkuNumByGoodsId($one['goods_id']);
                 $one['inventory'] = $goodsSkuObj->getInventoryByGoodsId($one['goods_id']);
                 $one['goods_attributes'] = json_decode($one['goods_attributes']);
+                $one['json'] = json_encode(
+                    [
+                        0 => '材质',
+                        1 => '颜色',
+                        2 => '尺寸',
+                    ]
+                );
+                $one['goods_attributes'] = [
+                    0 => '材质',
+                    1 => '颜色',
+                    2 => '尺寸',
+                ];
             }
             return $goodsInfo;
         }
