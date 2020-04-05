@@ -241,7 +241,7 @@ class GoodsSku
             foreach($attributesValueInfos as $oneAttributesValue)
             {
                 $value = [];
-                $value[] = ['value' => $oneAttributesValue['attributes_value']];
+                $value['value'] = $oneAttributesValue['attributes_value'];
                 $values[] = $value;
             }
             $selectList[] = [
