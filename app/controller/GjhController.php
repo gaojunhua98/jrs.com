@@ -579,7 +579,7 @@ class GjhController extends ControllerController
 	//TODO 根据商品名获取可选属性
 	public function getAttributesByGoodsName()
 	{
-		$goodsName = RequestTool::postParameters('goods_name');
+		$goodsName = RequestTool::getParameters('goods_name');
 		if(empty($goodsName)) 
 		{
 			return  json([
