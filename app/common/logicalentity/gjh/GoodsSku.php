@@ -189,8 +189,7 @@ class GoodsSku
         ];
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
-        var_dump($goodsAattributes);
-        die;
+
         foreach($goodsAattributes as $oneAattributes)
         {
             $attributesWhere = [
@@ -202,6 +201,8 @@ class GoodsSku
                 ['attributes_id', '=', $attributesInfo['attributes_id']],
                 ['is_del', '=', 0],
             ];
+            var_dump($attributesInfo, $attributesValueWhere);
+            die;
             $attributesValueInfos = AttributesValueModel::findOne($attributesValueWhere);
             foreach($attributesValueInfos as $oneAttributesValue)
             {
