@@ -70,7 +70,7 @@ class Attributes
             return false;
         }
         $attributesData = [
-            'attributes_name' => $saveDate['attributes_name'] ? $attributesInfo['attributes_name'] : $saveDate['attributes_name'],
+            'attributes_name' => isset($saveDate['attributes_name']) ? $attributesInfo['attributes_name'] : $saveDate['attributes_name'],
             'is_del' => $saveDate['is_del'],
         ];
         $res = AttributesModel::updateOne($where, $attributesData);
