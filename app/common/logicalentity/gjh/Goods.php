@@ -45,7 +45,7 @@ class Goods
         {
             return false;
         }
-        $saveDate['goods_attributes'] = json_encode($saveDate['goods_attributes']);
+        $saveDate['goods_attributes'] = isset($saveDate['goods_attributes']) ? json_encode($saveDate['goods_attributes']) : $goodsInfo['goods_attributes'];
         $res = GoodsModel::updateOne($where, $saveDate);
         if($res != false)
         {

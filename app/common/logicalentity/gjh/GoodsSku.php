@@ -41,7 +41,7 @@ class GoodsSku
         {
             return false;
         }
-        $saveDate['sku_attributes'] = json_encode($saveDate['sku_attributes']);
+        $saveDate['sku_attributes'] = isset($saveDate['sku_attributes']) ? json_encode($saveDate['sku_attributes']) : $goodsSkuInfo['sku_attributes'];;
         $res = GoodsSkuModel::updateOne($where, $saveDate);
         if($res != false)
         {
