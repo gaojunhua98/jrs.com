@@ -21,7 +21,11 @@ class GoodsSku
         {
             foreach($goodsSkuInfo['data'] as &$one)
             {
-                $one['sku_attributes'] = json_decode($one['sku_attributes']);
+                $one['sku_attributes'] = [
+                    '材质:金属',
+                    '颜色:红色',
+                    '尺寸:11',
+                ];
             }
             return $goodsSkuInfo;
         }
