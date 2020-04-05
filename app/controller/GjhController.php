@@ -386,7 +386,7 @@ class GjhController extends ControllerController
 			]);
 		}
 		$attributesObj = new Attributes();
-		if(empty($goodsSkuId))
+		if(empty($attributesId))
 		{
 			$res = $attributesObj->doCreateAttributes($saveInfo);
 		} else {
