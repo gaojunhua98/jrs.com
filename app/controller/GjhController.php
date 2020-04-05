@@ -369,6 +369,44 @@ class GjhController extends ControllerController
 		]);
 	}
 
+	//TODO 更新属性
+	public function saveAttributes()
+	{
+		$attributesId = RequestTool::postParameters('attributes_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少参数',
+				'data' => [
+						'attributes_id' => $attributesId,
+						'saveInfo' => $saveInfo,
+					]
+			]);
+		}
+		$attributesObj = new Attributes();
+		if(empty($goodsSkuId))
+		{
+			$res = $attributesObj->doCreateAttributes($saveInfo);
+		} else {
+			$res = $attributesObj->doUpdateAttributes($attributesId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+				'code' => 1,
+				'msg' => '操作成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
+
 	//TODO 获取全部属性
 	public function getAllAttributes()
 	{
@@ -427,6 +465,7 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
+
 	//TODO 获取商品SKU列表
 	public function getGoodsSkuList()
 	{
@@ -457,6 +496,44 @@ class GjhController extends ControllerController
 		return  json([
 			'code' => 1,
 			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	//TODO 更新仓库
+	public function saveGoodsSku()
+	{
+		$goodsSkuId = RequestTool::postParameters('goods_sku_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少参数',
+				'data' => [
+						'goods_sku_id' => $goodsSkuId,
+						'saveInfo' => $saveInfo,
+					]
+			]);
+		}
+		$goodsSkuObj = new GoodsSku();
+		if(empty($goodsSkuId))
+		{
+			$res = $goodsSkuObj->doCreateGoodsSku($saveInfo);
+		} else {
+			$res = $goodsSkuObj->doUpdateGoodsSku($goodsSkuId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+				'code' => 1,
+				'msg' => '操作成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
 			'data' => []
 		]);
 	}

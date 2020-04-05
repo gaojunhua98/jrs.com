@@ -39,8 +39,8 @@ class Depository
         $where = [
             ['depository_id', '=', $depositoryId]
         ];
-        $shopInfo = DepositoryModel::findOne($where);
-        if(empty($shopInfo))
+        $depositoryInfo = DepositoryModel::findOne($where);
+        if(empty($depositoryInfo))
         {
             return false;
         }

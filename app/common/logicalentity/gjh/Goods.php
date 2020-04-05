@@ -31,4 +31,37 @@ class Goods
         }
 		return false;
     }
+
+    /**
+     * 修改商品SPU信息
+     */
+    public function doUpdateGoods($goodsId, $saveDate)
+    {
+        $where = [
+            ['goods_id', '=', $goodsId]
+        ];
+        $goodsInfo = GoodsModel::findOne($where);
+        if(empty($goodsInfo))
+        {
+            return false;
+        }
+        $res = GoodsModel::updateOne($where, $saveDate);
+        if($res != false)
+        {
+            return true;
+        }
+		return false;
+    }
+
+    /**
+     * 添加商品SPU
+     */
+    public function doCreateGoods($addInfo)
+    {
+        if(GoodsModel::addOne($addInfo))
+        {
+            return true;
+        }
+		return false;
+    }
 }

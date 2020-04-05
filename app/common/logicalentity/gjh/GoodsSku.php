@@ -29,6 +29,39 @@ class GoodsSku
     }
 
     /**
+     * 修改商品SKU信息
+     */
+    public function doUpdateGoodsSku($goodsSkuId, $saveDate)
+    {
+        $where = [
+            ['goods_sku_id', '=', $goodsSkuId]
+        ];
+        $goodsSkuInfo = GoodsSkuModel::findOne($where);
+        if(empty($goodsSkuInfo))
+        {
+            return false;
+        }
+        $res = GoodsSkuModel::updateOne($where, $saveDate);
+        if($res != false)
+        {
+            return true;
+        }
+		return false;
+    }
+
+    /**
+     * 添加商品SKU
+     */
+    public function doCreateGoodsSku($addInfo)
+    {
+        if(GoodsSkuModel::addOne($addInfo))
+        {
+            return true;
+        }
+		return false;
+    }
+
+    /**
      * @name 通过店铺获取SKU量
      */
     public function getSkuNumByShopId($shopId)
