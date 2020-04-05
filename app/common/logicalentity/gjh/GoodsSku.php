@@ -24,7 +24,7 @@ class GoodsSku
         {
             foreach($goodsSkuInfo['data'] as &$one)
             {
-                $one['selectList'] = $this->doGetSelectList($goodsSkuInfo['goods_id']);
+                $one['selectList'] = $this->doGetSelectList($one['goods_id']);
                 $one['sku_attributes'] = [
                     '材质:金属',
                     '颜色:红色',
