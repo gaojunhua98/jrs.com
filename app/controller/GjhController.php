@@ -466,6 +466,44 @@ class GjhController extends ControllerController
 		]);
 	}
 
+	//TODO 更新商品SPU
+	public function saveGoods()
+	{
+		$goodsId = RequestTool::postParameters('goods_id');
+		$saveInfo = RequestTool::postParameters('saveInfo');
+		if(empty($saveInfo)) 
+		{
+			return  json([
+				'code' => -1001,
+				'msg' => '缺少参数',
+				'data' => [
+						'goods_id' => $goodsId,
+						'saveInfo' => $saveInfo,
+					]
+			]);
+		}
+		$goodsObj = new Goods();
+		if(empty($goodsId))
+		{
+			$res = $goodsObj->doCreateGoods($saveInfo);
+		} else {
+			$res = $goodsObj->doUpdateGoods($goodsId, $saveInfo);
+		}
+
+		if($res){
+			return  json([
+				'code' => 1,
+				'msg' => '操作成功',
+				'data' => []
+			]);
+		}
+		return  json([
+			'code' => -2001,
+			'msg' => '操作失败',
+			'data' => []
+		]);
+	}
+
 	//TODO 获取商品SKU列表
 	public function getGoodsSkuList()
 	{
