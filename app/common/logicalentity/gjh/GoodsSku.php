@@ -4,7 +4,10 @@ namespace app\common\logicalentity\gjh;
 
 use think\Session;
 use think\Cookie;
+use app\model\gjh\GoodsModel;
 use app\model\gjh\GoodsSkuModel;
+use app\model\gjh\AttributesModel;
+use app\model\gjh\AttributesValueModel;
 
 /**
  * @name 商品SKU相关逻辑层
@@ -21,6 +24,7 @@ class GoodsSku
         {
             foreach($goodsSkuInfo['data'] as &$one)
             {
+                $one['selectList'] = $this->doGetSelectList($goodsSkuInfo['goods_id']);
                 $one['sku_attributes'] = [
                     '材质:金属',
                     '颜色:红色',
@@ -171,5 +175,38 @@ class GoodsSku
         }
 
         return $inventory;
+    }
+
+    /**
+     * @name 通过goodsId获取选项
+     */
+    public function doGetSelectList($goodsId)
+    {
+        $selectList = [];
+        $where = [
+            ['goods_id', '=', $goodsId],
+            ['is_del', '=', 0],
+        ];
+        $goodsInfo = GoodsModel::findOne($where);
+        $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
+        foreach($goodsAattributes as $oneAattributes)
+        {
+            $attributesWhere = [
+                ['attributes_name', '=', $oneAattributes],
+                ['is_del', '=', 0],
+            ];
+            $attributesInfo = AttributesModel::findOne($attributesWhere);
+            $attributesValueWhere = [
+                ['attributes_id', '=', $attributesInfo['attributes_id']],
+                ['is_del', '=', 0],
+            ];
+            $attributesValueInfos = AttributesValueModel::findOne($attributesValueWhere);
+            foreach($attributesValueInfos as $oneAttributesValue)
+            {
+                $selectList[] = $oneAattributes . ':' . $oneAttributesValue['attributes_value'];
+            }
+        }
+
+        return $selectList;
     }
 }
