@@ -240,11 +240,13 @@ class GoodsSku
             $attributesValueInfos = AttributesValueModel::selectAny($attributesValueWhere);
             foreach($attributesValueInfos as $oneAttributesValue)
             {
-                $values[] = $oneAttributesValue['attributes_value'];
+                $value = [];
+                $value[] = $oneAttributesValue['attributes_value'];
+                $values[] = $value;
             }
             $selectList[] = [
                 'key' => $oneAattributes,
-                'value' => $values,
+                'arr' => $values,
             ];
         }
 
