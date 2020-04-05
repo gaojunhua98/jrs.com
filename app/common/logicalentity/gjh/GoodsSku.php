@@ -201,8 +201,6 @@ class GoodsSku
                 ['attributes_id', '=', $attributesInfo['attributes_id']],
                 ['is_del', '=', 0],
             ];
-            var_dump($attributesInfo, $attributesValueWhere);
-            die;
             $attributesValueInfos = AttributesValueModel::findOne($attributesValueWhere);
             foreach($attributesValueInfos as $oneAttributesValue)
             {
