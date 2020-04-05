@@ -79,8 +79,11 @@ class Attributes
             'is_del' => 1,
         ];
         AttributesValueModel::updateOne($where, $delData);
-        //添加属性值
-        $res = $this->doCreateAttributesValue($saveDate);
+        if(!$saveDate['is_del'] == 1)
+        {
+            //添加属性值
+            $res = $this->doCreateAttributesValue($saveDate);
+        }
         if($res != false)
         {
             return true;

@@ -500,7 +500,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新仓库
+	//TODO 更新商品SKU
 	public function saveGoodsSku()
 	{
 		$goodsSkuId = RequestTool::postParameters('goods_sku_id');
