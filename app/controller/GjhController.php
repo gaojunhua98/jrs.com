@@ -107,7 +107,8 @@ class GjhController extends ControllerController
 				'msg' => '获取成功',
 				'data' => [
 					'id' => $user['user_id'],
-					'username' => $user['user_name']
+					'username' => $user['user_name'],
+					'power' => $user['power'] == 1 ? 'admin' : 'user'
 				]
 			]);
 		}
