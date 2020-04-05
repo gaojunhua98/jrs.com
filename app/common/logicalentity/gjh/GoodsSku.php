@@ -226,6 +226,7 @@ class GoodsSku
 
         foreach($goodsAattributes as $oneAattributes)
         {
+            $values = [];
             $attributesWhere = [
                 ['attributes_name', '=', $oneAattributes],
                 ['is_del', '=', 0],
@@ -236,10 +237,12 @@ class GoodsSku
                 ['is_del', '=', 0],
             ];
             $attributesValueInfos = AttributesValueModel::selectAny($attributesValueWhere);
+            $selectList[] = $oneAattributes;
             foreach($attributesValueInfos as $oneAttributesValue)
             {
-                $selectList[$oneAattributes][] = $oneAttributesValue['attributes_value'];
+                $values[] = $oneAttributesValue['attributes_value'];
             }
+            $selectList[] = $values;
         }
 
         return $selectList;
