@@ -98,7 +98,7 @@ class Attributes
     {
         $attributesData = [
             'attributes_name' => $addInfo['attributes_name'],
-            'is_del' => $addInfo['is_del'],
+            'is_del' => 0,
         ];
         if($attributesId = AttributesModel::addOne($attributesData))
         {
