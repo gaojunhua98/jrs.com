@@ -179,7 +179,7 @@ class GoodsSku
     public function getValuesByJson($attributes)
     {
         $return = [];
-        $attributes = json_decode($attributes);
+        $attributes = (array)json_decode($attributes);
         if(!empty($attributes))
         {
             foreach($attributes as $key => $value)
