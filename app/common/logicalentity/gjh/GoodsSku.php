@@ -25,7 +25,8 @@ class GoodsSku
             foreach($goodsSkuInfo['data'] as &$one)
             {
                 $one['selectList'] = $this->doGetSelectList($one['goods_id']);
-                $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
+                // $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
+                $one['sku_attributes'] = json_decode($one['sku_attributes']);
             }
             return $goodsSkuInfo;
         }
@@ -179,7 +180,7 @@ class GoodsSku
     public function getValuesByJson($attributes)
     {
         $return = [];
-        $attributes = json_decode($attributes);
+        // $attributes = json_decode($attributes);
         var_dump($attributes, (array)$attributes);
         die;
         if(!empty($attributes))
