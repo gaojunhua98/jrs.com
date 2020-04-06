@@ -25,11 +25,7 @@ class GoodsSku
             foreach($goodsSkuInfo['data'] as &$one)
             {
                 $one['selectList'] = $this->doGetSelectList($one['goods_id']);
-                $one['sku_attributes'] = [
-                    '材质:金属',
-                    '颜色:红色',
-                    '尺寸:11',
-                ];
+                $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
             }
             return $goodsSkuInfo;
         }
@@ -175,6 +171,24 @@ class GoodsSku
         }
 
         return $inventory;
+    }
+
+    /**
+     * @name  根据Json获取属性
+     */
+    public function getValuesByJson($attributes)
+    {
+        $return = [];
+        $attributes = json_decode($attributes);
+        if(!empty($attributes))
+        {
+            foreach($attributes as $key => $value)
+            {
+                $return[] = $key . ':' . $value;
+            }
+            return $return;
+        }
+        return false;
     }
 
     /**
