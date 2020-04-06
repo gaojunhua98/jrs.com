@@ -543,11 +543,7 @@ class GjhController extends ControllerController
 	public function saveGoodsSku()
 	{
 		$goodsSkuId = RequestTool::postParameters('goods_sku_id');
-		$goodsName = RequestTool::postParameters('goods_name');
-		$skuNum = RequestTool::postParameters('sku_num');
-		$shopId = RequestTool::postParameters('shop_id');
-		$depositoryId = RequestTool::postParameters('depository_id');
-		$values = RequestTool::postParameters('values');
+		$saveInfo = RequestTool::postParameters('saveInfo');
 		if(empty($saveInfo)) 
 		{
 			return  json([
@@ -555,22 +551,11 @@ class GjhController extends ControllerController
 				'msg' => '缺少参数',
 				'data' => [
 						'goods_sku_id' => $goodsSkuId,
-						'goods_name' => $goodsName,
-						'sku_num' => $skuNum,
-						'shop_id' => $shopId,
-						'depository_id' => $depositoryId,
-						'values' => $values
+						'saveInfo' => $saveInfo,
 					]
 			]);
 		}
 		$goodsSkuObj = new GoodsSku();
-		$saveInfo = [
-			'goods_name' => $goodsName,
-			'sku_num' => $skuNum,
-			'shop_id' => $shopId,
-			'depository_id' => $depositoryId,
-			'values' => $values
-		];
 		if(empty($goodsSkuId))
 		{
 			$res = $goodsSkuObj->doCreateGoodsSku($saveInfo);
