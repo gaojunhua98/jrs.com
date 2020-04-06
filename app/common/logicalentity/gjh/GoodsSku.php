@@ -182,9 +182,9 @@ class GoodsSku
         $attributes = (array)json_decode($attributes);
         if(!empty($attributes))
         {
-            foreach($attributes as $key => $value)
+            foreach($attributes as $value)
             {
-                $return[] = $key . ':' . $value;
+                $return[] = $value;
             }
             return $return;
         }
