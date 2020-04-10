@@ -210,6 +210,8 @@ class GjhController extends ControllerController
 		$where[] = ['is_del', '=', 0];
 		$where[] = ['user_id', '=', User::doGetUserInfo()];
 
+		var_dump($where);
+		die;
 		$list = $shopObj->doGetShopList($where,$pageData);
 		if($list){
 			return  json([
