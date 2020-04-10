@@ -128,6 +128,6 @@ class User
      */
     public static function doGetUserInfo()
     {
-		return session('user_id');
+		return cookie('user_id');
     }
 }
