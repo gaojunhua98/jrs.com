@@ -245,6 +245,7 @@ class GjhController extends ControllerController
 		$shopObj = new Shop();
 		if(empty($shopId))
 		{
+			$saveInfo['user_id'] = ;
 			$res = $shopObj->doCreateShop($saveInfo);
 		} else {
 			$res = $shopObj->doUpdateShop($shopId, $saveInfo);

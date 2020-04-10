@@ -25,7 +25,7 @@ class User
         {
 			//登陆操作
 			session('user_name', $user['user_name']);
-            session('user_nickname', $user['user_nickname']);
+            session('user_id', $user['user_id']);
 
 			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
             return $user;
@@ -56,7 +56,7 @@ class User
         if(session('user_name') == $userName)
         {
             session('user_name' , null);
-            session('user_nickname' , null);
+            session('user_id' , null);
 
             cookie('user_name', null);
             return true;
@@ -121,5 +121,13 @@ class User
             return $userInfo;
         }
 		return false;
+    }
+
+    /**
+     * 获取登陆用户信息
+     */
+    public function doGetUserInfo()
+    {
+		return session('user_id');
     }
 }
