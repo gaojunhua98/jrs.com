@@ -126,7 +126,7 @@ class User
     /**
      * 获取登陆用户信息
      */
-    public function doGetUserInfo()
+    public static function doGetUserInfo()
     {
 		return session('user_id');
     }
