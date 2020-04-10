@@ -208,6 +208,7 @@ class GjhController extends ControllerController
 		$shopObj = new Shop();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
 
 		$list = $shopObj->doGetShopList($where,$pageData);
 		if($list){
@@ -281,6 +282,7 @@ class GjhController extends ControllerController
 		$depositoryObj = new Depository();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
 
 		$list = $depositoryObj->doGetDepositoryList($where,$pageData);
 		if($list){
@@ -451,6 +453,7 @@ class GjhController extends ControllerController
 		$goodsObj = new Goods();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
 
 		$list = $goodsObj->doGetGoodsList($where,$pageData);
 		if($list){
@@ -524,6 +527,7 @@ class GjhController extends ControllerController
 		$goodsSkuObj = new GoodsSku();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
 
 		$list = $goodsSkuObj->doGetGoodsSkuList($where,$pageData);
 		if($list){
