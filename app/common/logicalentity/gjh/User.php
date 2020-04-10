@@ -24,7 +24,7 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-			// session('user_name', $user['user_name']);
+			session('user_name', $user['user_name']);
             session('user_id', $user['user_id']);
 
 			cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
