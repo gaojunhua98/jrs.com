@@ -24,10 +24,10 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-			session('user_name', $user['user_name']);
+			// session('user_name', $user['user_name']);
             session('user_id', $user['user_id']);
 
-			cookie("user_name", $user['user_name'], time()+3600, "/", "127.0.0.1");
+			cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
 		return false;
@@ -128,6 +128,6 @@ class User
      */
     public static function doGetUserInfo()
     {
-		return cookie('user_id');
+		return session('user_id');
     }
 }
