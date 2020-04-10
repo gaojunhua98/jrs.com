@@ -391,7 +391,6 @@ class GjhController extends ControllerController
 		$attributesObj = new Attributes();
 		if(empty($attributesId))
 		{
-			$saveInfo['user_id'] = User::doGetUserInfo();
 			$res = $attributesObj->doCreateAttributes($saveInfo);
 		} else {
 			$res = $attributesObj->doUpdateAttributes($attributesId, $saveInfo);
