@@ -23,6 +23,8 @@ class GoodsSku
         
         if($goodsSkuInfo)
         {
+            var_dump(array($goodsSkuInfo['data']));
+            die;
             foreach($goodsSkuInfo['data'] as &$one)
             {
                 $one['selectList'] = $this->doGetSelectList($one['goods_id']);
