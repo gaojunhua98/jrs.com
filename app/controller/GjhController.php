@@ -587,7 +587,8 @@ class GjhController extends ControllerController
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
 		$where[] = ['user_id', '=', $user_id];
-
+		var_dump($where);
+		die;
 		$list = $goodsSkuObj->doGetGoodsSkuList($where,$pageData);
 		if($list){
 			return  json([
