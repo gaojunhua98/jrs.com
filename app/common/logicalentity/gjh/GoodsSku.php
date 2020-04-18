@@ -19,7 +19,7 @@ class GoodsSku
      */
     public function doGetGoodsSkuList($where, $pageData)
     {
-        $goodsSkuInfo = GoodsSkuModel::getList($where, $pageData);
+        $goodsSkuInfo = GoodsSkuModel::selectAny($where);
         var_dump($goodsSkuInfo);
         die;
         if($goodsSkuInfo)
