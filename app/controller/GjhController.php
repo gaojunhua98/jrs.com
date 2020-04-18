@@ -275,7 +275,6 @@ class GjhController extends ControllerController
 		$shopObj = new Shop();
 		if(empty($shopId))
 		{
-			$saveInfo['user_id'] = User::doGetUserInfo();
 			$res = $shopObj->doCreateShop($saveInfo);
 		} else {
 			$res = $shopObj->doUpdateShop($shopId, $saveInfo);
@@ -377,7 +376,6 @@ class GjhController extends ControllerController
 		$depositoryObj = new Depository();
 		if(empty($depositoryId))
 		{
-			$saveInfo['user_id'] = User::doGetUserInfo();
 			$res = $depositoryObj->doCreateDepository($saveInfo);
 		} else {
 			$res = $depositoryObj->doUpdateDepository($depositoryId, $saveInfo);
@@ -549,7 +547,6 @@ class GjhController extends ControllerController
 		$goodsObj = new Goods();
 		if(empty($goodsId))
 		{
-			$saveInfo['user_id'] = User::doGetUserInfo();
 			$res = $goodsObj->doCreateGoods($saveInfo);
 		} else {
 			$res = $goodsObj->doUpdateGoods($goodsId, $saveInfo);
@@ -624,7 +621,6 @@ class GjhController extends ControllerController
 		$goodsSkuObj = new GoodsSku();
 		if(empty($goodsSkuId))
 		{
-			$saveInfo['user_id'] = User::doGetUserInfo();
 			$res = $goodsSkuObj->doCreateGoodsSku($saveInfo);
 		} else {
 			$res = $goodsSkuObj->doUpdateGoodsSku($goodsSkuId, $saveInfo);
