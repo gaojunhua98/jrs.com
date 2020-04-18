@@ -58,7 +58,7 @@ class User
             session('user_name' , null);
             session('user_id' , null);
 
-            cookie('user_name', null);
+            cookie('user_id', null);
             return true;
         }
 		return false;
