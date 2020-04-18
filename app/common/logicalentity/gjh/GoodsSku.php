@@ -20,6 +20,8 @@ class GoodsSku
     public function doGetGoodsSkuList($where, $pageData)
     {
         $goodsSkuInfo = GoodsSkuModel::getList($where, $pageData);
+        var_dump($goodsSkuInfo);
+        die;
         if($goodsSkuInfo)
         {
             foreach($goodsSkuInfo['data'] as &$one)
