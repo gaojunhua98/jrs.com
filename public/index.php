@@ -23,7 +23,6 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
     file_put_contents('option.txt',json_encode($_REQUEST));
     exit;
 }
-
 header('Access-Control-Allow-Origin:*');
 // 响应类型
 header('Access-Control-Allow-Methods:*');

@@ -11,7 +11,7 @@ use app\model\gjh\UserModel;
  */
 class User
 {
-
+    public static $user_id;
     /**
      * 登陆逻辑
      */
@@ -26,8 +26,8 @@ class User
 			//登陆操作
 			session('user_name', $user['user_name']);
             session('user_id', $user['user_id']);
-
-			cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
+            self::$user_id = $user['user_name'];
+            cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
 		return false;
@@ -128,6 +128,6 @@ class User
      */
     public static function doGetUserInfo()
     {
-		return session('user_id');
+		return self::$user_id;
     }
 }
