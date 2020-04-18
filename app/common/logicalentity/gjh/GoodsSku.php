@@ -73,10 +73,10 @@ class GoodsSku
     /**
      * @name 通过店铺获取SKU量
      */
-    public function getSkuNumByShopId($shopId)
+    public function getSkuNumByShopName($shopName)
     {
         $where = [
-            ['shop_id', '=', $shopId],
+            ['shop_name', '=', $shopName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -86,10 +86,10 @@ class GoodsSku
     /**
      * @name 通过仓库获取SKU量
      */
-    public function getSkuNumByDepositoryId($depositoryId)
+    public function getSkuNumByDepositoryName($depositoryName)
     {
         $where = [
-            ['depository_id', '=', $depositoryId],
+            ['depository_name', '=', $depositoryName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -100,10 +100,10 @@ class GoodsSku
     /**
      * @name 通过商品获取SKU量
      */
-    public function getSkuNumByGoodsId($goodsId)
+    public function getSkuNumByGoodsName($goodsName)
     {
         $where = [
-            ['goods_id', '=', $goodsId],
+            ['goods_name', '=', $goodsName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -121,10 +121,10 @@ class GoodsSku
     /**
      * @name 通过店铺获取库存量
      */
-    public function getInventoryByShopId($shopId)
+    public function getInventoryByShopName($shopName)
     {
         $where = [
-            ['shop_id', '=', $shopId],
+            ['shop_name', '=', $shopName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);
@@ -134,10 +134,10 @@ class GoodsSku
     /**
      * @name 通过仓库获取库存量
      */
-    public function getInventoryByDepositoryId($depositoryId)
+    public function getInventoryByDepositoryName($depositoryName)
     {
         $where = [
-            ['depository_id', '=', $depositoryId],
+            ['depository_name', '=', $depositoryName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);
@@ -148,10 +148,10 @@ class GoodsSku
     /**
      * @name 通过商品获取库存量
      */
-    public function getInventoryByGoodsId($goodsId)
+    public function getInventoryByGoodsName($goodsName)
     {
         $where = [
-            ['goods_id', '=', $goodsId],
+            ['goods_name', '=', $goodsName],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);

@@ -23,8 +23,8 @@ class Shop
         {
             foreach($shopInfo['data'] as &$one)
             {
-                $one['skuNum'] = $goodsSkuObj->getSkuNumByShopId($one['shop_id']);
-                $one['inventory'] = $goodsSkuObj->getInventoryByShopId($one['shop_id']);
+                $one['skuNum'] = $goodsSkuObj->getSkuNumByShopName($one['shop_name']);
+                $one['inventory'] = $goodsSkuObj->getInventoryByShopName($one['shop_name']);
             }
             return $shopInfo;
         }
