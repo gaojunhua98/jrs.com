@@ -29,6 +29,8 @@ class GoodsSku
                 // $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
                 $one['sku_attributes'] = json_decode($one['sku_attributes']);
             }
+            
+        die;
             return $goodsSkuInfo;
         }
 		return false;
@@ -208,7 +210,6 @@ class GoodsSku
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
         var_dump($goodsAattributes);
-        die;
         foreach($goodsAattributes as $oneAattributes)
         {
             $attributesWhere = [
