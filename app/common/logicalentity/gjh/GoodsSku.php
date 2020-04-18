@@ -23,8 +23,6 @@ class GoodsSku
         
         if($goodsSkuInfo)
         {
-            var_dump(array($goodsSkuInfo['data']));
-            die;
             foreach($goodsSkuInfo['data'] as &$one)
             {
                 $one['selectList'] = $this->doGetSelectList($one['goods_id']);
@@ -209,7 +207,8 @@ class GoodsSku
         ];
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
-
+        var_dump($goodsAattributes);
+        die;
         foreach($goodsAattributes as $oneAattributes)
         {
             $attributesWhere = [
