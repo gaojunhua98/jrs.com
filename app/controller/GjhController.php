@@ -197,10 +197,11 @@ class GjhController extends ControllerController
 	public function getAllShops()
 	{
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		$shopObj = new Shop();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $shopObj->doGetAllShop($where);
 		if($list){
@@ -224,6 +225,7 @@ class GjhController extends ControllerController
 	{
 		$pageData = Page::getPageParameters();
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		if(!$pageData)
 		{
 	    	return  json([
@@ -235,7 +237,7 @@ class GjhController extends ControllerController
 		$shopObj = new Shop();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $shopObj->doGetShopList($where,$pageData);
 		if($list){
@@ -297,10 +299,11 @@ class GjhController extends ControllerController
 	public function getAllDepositorys()
 	{
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		$depositoryObj = new Depository();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $depositoryObj->doGetAllDepository($where);
 		if($list){
@@ -324,6 +327,7 @@ class GjhController extends ControllerController
 	{
 		$pageData = Page::getPageParameters();
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		if(!$pageData)
 		{
 	    	return  json([
@@ -335,7 +339,7 @@ class GjhController extends ControllerController
 		$depositoryObj = new Depository();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $depositoryObj->doGetDepositoryList($where,$pageData);
 		if($list){
@@ -495,6 +499,7 @@ class GjhController extends ControllerController
 	{
 		$pageData = Page::getPageParameters();
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		if(!$pageData)
 		{
 	    	return  json([
@@ -506,7 +511,7 @@ class GjhController extends ControllerController
 		$goodsObj = new Goods();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $goodsObj->doGetGoodsList($where,$pageData);
 		if($list){
@@ -569,6 +574,7 @@ class GjhController extends ControllerController
 	{
 		$pageData = Page::getPageParameters();
 		$query = json_decode(RequestTool::getParameters('query'));
+		$user_id = json_decode(RequestTool::getParameters('user_id'));
 		if(!$pageData)
 		{
 	    	return  json([
@@ -580,7 +586,7 @@ class GjhController extends ControllerController
 		$goodsSkuObj = new GoodsSku();
 		$where = $this->getWhere($query);
 		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', User::doGetUserInfo()];
+		$where[] = ['user_id', '=', $user_id];
 
 		$list = $goodsSkuObj->doGetGoodsSkuList($where,$pageData);
 		if($list){
