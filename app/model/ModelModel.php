@@ -55,6 +55,7 @@ class ModelModel extends Model
             
                      ])
                      ->toArray();
+                     echo  static::getLastSql();exit;
         return (array)$list;
     }
 

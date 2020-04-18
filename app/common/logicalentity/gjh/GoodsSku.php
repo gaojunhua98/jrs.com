@@ -20,7 +20,7 @@ class GoodsSku
     public function doGetGoodsSkuList($where, $pageData)
     {
         $goodsSkuInfo = GoodsSkuModel::getList($where, $pageData);
-        M()->getAllSql();
+        
         if($goodsSkuInfo)
         {
             foreach($goodsSkuInfo['data'] as &$one)
