@@ -32,6 +32,20 @@ class Depository
     }
 
     /**
+     * 获取全部仓库信息
+     */
+    public function doGetAllDepository($where)
+    {
+        $depositorysInfo = DepositoryModel::selectAny($where);
+
+        if($depositorysInfo)
+        {
+            return $depositorysInfo;
+        }
+		return false;
+    }
+
+    /**
      * 修改仓库信息
      */
     public function doUpdateDepository($depositoryId, $saveDate)

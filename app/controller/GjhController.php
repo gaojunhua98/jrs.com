@@ -62,7 +62,6 @@ class GjhController extends ControllerController
 	            'code' => 1,
 	            'msg' => '登陆成功',
 	            'data' => [
-						'user_id' => User::doGetUserInfo(),
 						'token' => $user['user_id'],
 						'exp_time' => time()+24*3600,
 	            	]
@@ -121,7 +120,7 @@ class GjhController extends ControllerController
         
 	}
 
-	//TODO 获取用户列表
+	// 获取用户列表
 	public function getUserList()
 	{
 		$pageData = Page::getPageParameters();
@@ -155,7 +154,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新用户
+	// 更新用户
 	public function saveUser()
 	{
 		$userId = RequestTool::postParameters('user_id');
@@ -192,8 +191,34 @@ class GjhController extends ControllerController
 			'data' => []
 		]);
 	}
-	
-	//TODO 获取店铺列表
+
+	// 获取全部店铺
+	public function getAllShops()
+	{
+		$query = json_decode(RequestTool::getParameters('query'));
+		$shopObj = new Shop();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
+
+		$list = $shopObj->doGetAllShop($where);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	// 获取店铺列表
 	public function getShopList()
 	{
 		$pageData = Page::getPageParameters();
@@ -228,7 +253,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新店铺
+	// 更新店铺
 	public function saveShop()
 	{
 		$shopId = RequestTool::postParameters('shop_id');
@@ -267,7 +292,33 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 获取仓库列表
+	// 获取全部仓库
+	public function getAllDepositorys()
+	{
+		$query = json_decode(RequestTool::getParameters('query'));
+		$depositoryObj = new Depository();
+		$where = $this->getWhere($query);
+		$where[] = ['is_del', '=', 0];
+		$where[] = ['user_id', '=', User::doGetUserInfo()];
+
+		$list = $depositoryObj->doGetAllDepository($where);
+		if($list){
+			return  json([
+	            'code' => 1,
+	            'msg' => '获取成功',
+	            'data' => [
+					'list' => $list
+				]
+	        ]);
+		}
+		return  json([
+			'code' => 1,
+			'msg' => '无数据',
+			'data' => []
+		]);
+	}
+
+	// 获取仓库列表
 	public function getDepositoryList()
 	{
 		$pageData = Page::getPageParameters();
@@ -302,7 +353,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新仓库
+	// 更新仓库
 	public function saveDepository()
 	{
 		$depositoryId = RequestTool::postParameters('depository_id');
@@ -341,7 +392,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 获取属性列表
+	// 获取属性列表
 	public function getAttributesList()
 	{
 		$pageData = Page::getPageParameters();
@@ -375,7 +426,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新属性
+	// 更新属性
 	public function saveAttributes()
 	{
 		$attributesId = RequestTool::postParameters('attributes_id');
@@ -413,7 +464,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 获取全部属性
+	// 获取全部属性
 	public function getAllAttributes()
 	{
 		// $query = json_decode(RequestTool::getParameters('query'));
@@ -438,7 +489,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 获取商品SPU列表
+	// 获取商品SPU列表
 	public function getGoodsList()
 	{
 		$pageData = Page::getPageParameters();
@@ -473,7 +524,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新商品SPU
+	// 更新商品SPU
 	public function saveGoods()
 	{
 		$goodsId = RequestTool::postParameters('goods_id');
@@ -512,7 +563,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 获取商品SKU列表
+	// 获取商品SKU列表
 	public function getGoodsSkuList()
 	{
 		$pageData = Page::getPageParameters();
@@ -547,7 +598,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 更新商品SKU
+	// 更新商品SKU
 	public function saveGoodsSku()
 	{
 		$goodsSkuId = RequestTool::postParameters('goods_sku_id');
@@ -586,7 +637,7 @@ class GjhController extends ControllerController
 		]);
 	}
 
-	//TODO 根据商品名获取可选属性
+	// 根据商品名获取可选属性
 	public function getAttributesByGoodsName()
 	{
 		$goodsName = RequestTool::getParameters('goods_name');

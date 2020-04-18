@@ -32,6 +32,20 @@ class Shop
     }
 
     /**
+     * 获取全部店铺信息
+     */
+    public function doGetAllShop($where)
+    {
+        $shopsInfo = ShopModel::selectAny($where);
+
+        if($shopsInfo)
+        {
+            return $shopsInfo;
+        }
+		return false;
+    }
+
+    /**
      * 修改店铺信息
      */
     public function doUpdateShop($shopId, $saveDate)
