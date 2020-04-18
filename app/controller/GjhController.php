@@ -62,6 +62,7 @@ class GjhController extends ControllerController
 	            'code' => 1,
 	            'msg' => '登陆成功',
 	            'data' => [
+						'id' => User::doGetUserInfo(),
 						'token' => $user['user_id'],
 						'exp_time' => time()+24*3600,
 	            	]
