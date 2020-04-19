@@ -32,7 +32,6 @@ class GoodsSku
                 $one['sku_attributes'] = json_decode($one['sku_attributes']);
                 $one = $this->delSkuData($one);
             }
-            die;
             return $goodsSkuInfo;
         }
 		return false;
@@ -276,7 +275,6 @@ class GoodsSku
         
         if(is_array($goodsAattributes))
         {
-            var_dump($goodsAattributes);
             foreach($goodsAattributes as $oneAattributes)
             {
                 $attributesWhere = [
