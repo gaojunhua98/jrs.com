@@ -274,7 +274,7 @@ class GoodsSku
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
         
-        if(array($goodsAattributes))
+        if(is_array($goodsAattributes))
         {
             var_dump($goodsAattributes);
             foreach($goodsAattributes as $oneAattributes)
