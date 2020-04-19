@@ -4,8 +4,10 @@ namespace app\common\logicalentity\gjh;
 
 use think\Session;
 use think\Cookie;
+use app\model\gjh\ShopModel;
 use app\model\gjh\GoodsModel;
 use app\model\gjh\GoodsSkuModel;
+use app\model\gjh\DepositoryModel;
 use app\model\gjh\AttributesModel;
 use app\model\gjh\AttributesValueModel;
 
@@ -25,9 +27,10 @@ class GoodsSku
         {
             foreach($goodsSkuInfo['data'] as &$one)
             {
-                $one['selectList'] = $this->doGetAttributesByGoodsName($one['goods_name']);
+                $one['selectList'] = $this->doGetAttributesByGoodsID($one['goods_id']);
                 // $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
                 $one['sku_attributes'] = json_decode($one['sku_attributes']);
+                $one = $this->delSkuData($one);
             }
             
             return $goodsSkuInfo;
@@ -38,7 +41,7 @@ class GoodsSku
     /**
      * 修改商品SKU信息
      */
-    public function doUpdateGoodsSku($goodsSkuId, $saveDate)
+    public function doUpdateGoodsSku($goodsSkuId, $saveData)
     {
         $where = [
             ['goods_sku_id', '=', $goodsSkuId]
@@ -48,8 +51,8 @@ class GoodsSku
         {
             return false;
         }
-        $saveDate['sku_attributes'] = isset($saveDate['sku_attributes']) ? json_encode($saveDate['sku_attributes']) : $goodsSkuInfo['sku_attributes'];;
-        $res = GoodsSkuModel::updateOne($where, $saveDate);
+        $saveData['sku_attributes'] = isset($saveData['sku_attributes']) ? json_encode($saveData['sku_attributes']) : $goodsSkuInfo['sku_attributes'];;
+        $res = GoodsSkuModel::updateOne($where, $saveData);
         if($res != false)
         {
             return true;
@@ -60,10 +63,10 @@ class GoodsSku
     /**
      * 添加商品SKU
      */
-    public function doCreateGoodsSku($addInfo)
+    public function doCreateGoodsSku($addData)
     {
-        $addInfo['sku_attributes'] = json_encode($addInfo['sku_attributes']);
-        if(GoodsSkuModel::addOne($addInfo))
+        $addData['sku_attributes'] = json_encode($addData['sku_attributes']);
+        if(GoodsSkuModel::addOne($addData))
         {
             return true;
         }
@@ -71,12 +74,40 @@ class GoodsSku
     }
 
     /**
+     * 处理SKU信息
+     */
+    public function delSkuData($data)
+    {
+        $goodsWhere = [
+            ['goods_id', '=', $data['goods_id']]
+        ];
+        $goodsInfo = GoodsModel::findOne($goodsWhere);
+
+        $shopWhere = [
+            ['shop_id', '=', $data['shop_id']]
+        ];
+        $shopInfo = ShopModel::findOne($shopWhere);
+
+        $depositoryWhere = [
+            ['depository_id', '=', $data['depository_id']]
+        ];
+        $depositoryInfo = DepositoryModel::findOne($depositoryWhere);
+
+        $data['goods_name'] = $goodsInfo['goods_name'];
+        $data['shop_name'] = $shopInfo['shop_name'];
+        $data['depository_name'] = $depositoryInfo['depository_name'];
+        
+        return $data;
+    }
+
+
+    /**
      * @name 通过店铺获取SKU量
      */
-    public function getSkuNumByShopName($shopName)
+    public function getSkuNumByShopID($shopID)
     {
         $where = [
-            ['shop_name', '=', $shopName],
+            ['shop_id', '=', $shopID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -86,10 +117,10 @@ class GoodsSku
     /**
      * @name 通过仓库获取SKU量
      */
-    public function getSkuNumByDepositoryName($depositoryName)
+    public function getSkuNumByDepositoryID($depositoryID)
     {
         $where = [
-            ['depository_name', '=', $depositoryName],
+            ['depository_id', '=', $depositoryID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -100,10 +131,10 @@ class GoodsSku
     /**
      * @name 通过商品获取SKU量
      */
-    public function getSkuNumByGoodsName($goodsName)
+    public function getSkuNumByGoodsID($goodsID)
     {
         $where = [
-            ['goods_name', '=', $goodsName],
+            ['goods_id', '=', $goodsID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetSkuNum($where);
@@ -121,10 +152,10 @@ class GoodsSku
     /**
      * @name 通过店铺获取库存量
      */
-    public function getInventoryByShopName($shopName)
+    public function getInventoryByShopID($shopID)
     {
         $where = [
-            ['shop_name', '=', $shopName],
+            ['shop_id', '=', $shopID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);
@@ -134,10 +165,10 @@ class GoodsSku
     /**
      * @name 通过仓库获取库存量
      */
-    public function getInventoryByDepositoryName($depositoryName)
+    public function getInventoryByDepositoryID($depositoryID)
     {
         $where = [
-            ['depository_name', '=', $depositoryName],
+            ['depository_id', '=', $depositoryID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);
@@ -148,10 +179,10 @@ class GoodsSku
     /**
      * @name 通过商品获取库存量
      */
-    public function getInventoryByGoodsName($goodsName)
+    public function getInventoryByGoodsID($goodsID)
     {
         $where = [
-            ['goods_name', '=', $goodsName],
+            ['goods_id', '=', $goodsID],
             ['is_del', '=', 0],
         ];
         $count = $this->doGetInventory($where);
@@ -233,11 +264,11 @@ class GoodsSku
     /**
      * @name 通过goodsName获取选项
      */
-    public function doGetAttributesByGoodsName($goodsName)
+    public function doGetAttributesByGoodsID($goodsID)
     {
         $selectList = [];
         $where = [
-            ['goods_name', '=', $goodsName],
+            ['goods_id', '=', $goodsID],
             ['is_del', '=', 0],
         ];
         $goodsInfo = GoodsModel::findOne($where);

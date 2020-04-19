@@ -23,8 +23,8 @@ class Goods
         {
             foreach($goodsInfo['data'] as &$one)
             {
-                $one['skuNum'] = $goodsSkuObj->getSkuNumByGoodsName($one['goods_name']);
-                $one['inventory'] = $goodsSkuObj->getInventoryByGoodsName($one['goods_name']);
+                $one['skuNum'] = $goodsSkuObj->getSkuNumByGoodsID($one['goods_id']);
+                $one['inventory'] = $goodsSkuObj->getInventoryByGoodsID($one['goods_id']);
                 $one['goods_attributes'] = json_decode($one['goods_attributes']);
             }
             return $goodsInfo;

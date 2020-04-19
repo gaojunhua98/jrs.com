@@ -23,8 +23,8 @@ class Depository
         {
             foreach($depositoryInfo['data'] as &$one)
             {
-                $one['skuNum'] = $goodsSkuObj->getSkuNumByDepositoryName($one['depository_name']);
-                $one['inventory'] = $goodsSkuObj->getInventoryByDepositoryName($one['depository_name']);
+                $one['skuNum'] = $goodsSkuObj->getSkuNumByDepositoryID($one['depository_id']);
+                $one['inventory'] = $goodsSkuObj->getInventoryByDepositoryID($one['depository_id']);
             }
             return $depositoryInfo;
         }
