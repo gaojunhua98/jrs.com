@@ -27,10 +27,10 @@ class GoodsSku
         {
             foreach($goodsSkuInfo['data'] as &$one)
             {
+                $one = $this->delSkuData($one);
                 $one['selectList'] = $this->doGetAttributesByGoodsID($one['goods_id']);
                 // $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
                 $one['sku_attributes'] = json_decode($one['sku_attributes']);
-                $one = $this->delSkuData($one);
             }
             return $goodsSkuInfo;
         }
