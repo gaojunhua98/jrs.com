@@ -28,6 +28,7 @@ class GoodsSku
             foreach($goodsSkuInfo['data'] as &$one)
             {
                 $one['selectList'] = $this->doGetAttributesByGoodsID($one['goods_id']);
+                die;
                 // $one['sku_attributes'] = $this->getValuesByJson($one['sku_attributes']);
                 $one['sku_attributes'] = json_decode($one['sku_attributes']);
                 $one = $this->delSkuData($one);
@@ -273,6 +274,7 @@ class GoodsSku
         ];
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
+        var_dump($goodsAattributes);
 
         foreach($goodsAattributes as $oneAattributes)
         {
