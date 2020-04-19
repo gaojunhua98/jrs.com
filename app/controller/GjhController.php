@@ -643,19 +643,19 @@ class GjhController extends ControllerController
 	// 根据商品名获取可选属性
 	public function getAttributesByGoodsName()
 	{
-		$goodsName = RequestTool::getParameters('goods_name');
-		if(empty($goodsName)) 
+		$goodsID = RequestTool::getParameters('goods_id');
+		if(empty($goodsID)) 
 		{
 			return  json([
 				'code' => -1001,
 				'msg' => '缺少参数',
 				'data' => [
-						'goods_name' => $goodsName,
+						'goods_id' => $goodsID,
 					]
 			]);
 		}
 		$goodsSkuObj = new GoodsSku();
-		$res = $goodsSkuObj->doGetAttributesByGoodsName($goodsName);
+		$res = $goodsSkuObj->doGetAttributesByGoodsID($goodsID);
 
 		if($res){
 			return  json([
