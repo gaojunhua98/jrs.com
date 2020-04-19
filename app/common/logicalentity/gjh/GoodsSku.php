@@ -33,7 +33,6 @@ class GoodsSku
                 $one = $this->delSkuData($one);
             }
             
-            die;
             return $goodsSkuInfo;
         }
 		return false;
@@ -274,23 +273,25 @@ class GoodsSku
         ];
         $goodsInfo = GoodsModel::findOne($where);
         $goodsAattributes = json_decode($goodsInfo['goods_attributes']);
-        var_dump($goodsAattributes);
-
-        foreach($goodsAattributes as $oneAattributes)
+        
+        if(array($goodsAattributes))
         {
-            $attributesWhere = [
-                ['attributes_name', '=', $oneAattributes],
-                ['is_del', '=', 0],
-            ];
-            $attributesInfo = AttributesModel::findOne($attributesWhere);
-            $attributesValueWhere = [
-                ['attributes_id', '=', $attributesInfo['attributes_id']],
-                ['is_del', '=', 0],
-            ];
-            $attributesValueInfos = AttributesValueModel::selectAny($attributesValueWhere);
-            foreach($attributesValueInfos as $oneAttributesValue)
+            foreach($goodsAattributes as $oneAattributes)
             {
-                $selectList[] = ['value' => $oneAattributes . ':' . $oneAttributesValue['attributes_value']];
+                $attributesWhere = [
+                    ['attributes_name', '=', $oneAattributes],
+                    ['is_del', '=', 0],
+                ];
+                $attributesInfo = AttributesModel::findOne($attributesWhere);
+                $attributesValueWhere = [
+                    ['attributes_id', '=', $attributesInfo['attributes_id']],
+                    ['is_del', '=', 0],
+                ];
+                $attributesValueInfos = AttributesValueModel::selectAny($attributesValueWhere);
+                foreach($attributesValueInfos as $oneAttributesValue)
+                {
+                    $selectList[] = ['value' => $oneAattributes . ':' . $oneAttributesValue['attributes_value']];
+                }
             }
         }
 
