@@ -1,11 +1,24 @@
-const express = require('express'); //npm下载并引入express模块 npm -express -D
-
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
+const chalk = require('chalk')
 const app = express();
-app.use(express.stitic('./gjh')) // ./dist 为vue打包后dist文件夹的路径
-app.listen(8080,function(err){  //8080 想要监听项目的端口号
-	if(err){
-		console.log(err)
-	}else {
-		console.log('项目启动成功')
-	}
+app.use(express.static(path.resolve(__dirname, './dist')))
+
+app.get('/', function(req, res) {
+    const html = fs.readFileSync(path.resolve(__dirname, './dist/home.html'), 'utf-8')
+    res.send(html)
 })
+
+app.get('/home', function(req, res) {
+    const html = fs.readFileSync(path.resolve(__dirname, './dist/home.html'), 'utf-8')
+    res.send(html)
+})
+
+app.get('/about', function(req, res) {
+    const html = fs.readFileSync(path.resolve(__dirname, './dist/about.html'), 'utf-8')
+    res.send(html)
+})
+app.listen(8082, res => {
+    console.log(chalk.yellow('Start Service On 8082'));
+});
