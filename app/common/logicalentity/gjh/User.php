@@ -24,10 +24,10 @@ class User
         if($user = UserModel::findOne($where))
         {
 			//登陆操作
-			session('user_name', $user['user_name']);
-            session('user_id', $user['user_id']);
+			// session('user_name', $user['user_name']);
+            // session('user_id', $user['user_id']);
             
-            cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
+            // cookie("user_id", $user['user_id'], time()+3600, "/", "127.0.0.1");
             return $user;
         }
 		return false;
@@ -55,10 +55,10 @@ class User
     {
         if(session('user_name') == $userName)
         {
-            session('user_name' , null);
-            session('user_id' , null);
+            // session('user_name' , null);
+            // session('user_id' , null);
 
-            cookie('user_id', null);
+            // cookie('user_id', null);
             return true;
         }
 		return false;
