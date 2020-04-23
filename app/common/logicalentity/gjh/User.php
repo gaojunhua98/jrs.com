@@ -86,7 +86,7 @@ class User
             ['user_id', '=', $userId]
         ];
         $nameWhere = [
-            ['user_id', '!=', $userId],
+            ['user_id', 'neq', $userId],
             ['user_name', '=', $saveDate['user_name']],
         ];
         
