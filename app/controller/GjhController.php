@@ -174,6 +174,7 @@ class GjhController extends ControllerController
 		$userObj = new User();
 		if(empty($userId))
 		{
+			unset($saveInfo['user_id']);
 			$res = $userObj->doCreateUser($saveInfo);
 		} else {
 			$res = $userObj->doUpdateUser($userId, $saveInfo);
