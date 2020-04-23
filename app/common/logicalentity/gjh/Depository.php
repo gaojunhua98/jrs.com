@@ -53,7 +53,7 @@ class Depository
         $where = [
             ['depository_id', '=', $depositoryId]
         ];
-        if(!empty($saveDate['goods_name']))
+        if(!empty($saveDate['depository_name']))
         {
             $nameWhere = [
                 ['depository_id', '<>', $depositoryId],
