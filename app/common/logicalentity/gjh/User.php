@@ -103,6 +103,14 @@ class User
      */
     public function doCreateUser($addInfo)
     {
+        $where = [
+            ['user_name', '=', $addInfo['user_name']],
+        ];
+        $userInfo = UserModel::findOne($where);
+        if(!empty($userInfo))
+        {
+            return false;
+        }
         if(UserModel::addOne($addInfo))
         {
             return true;
