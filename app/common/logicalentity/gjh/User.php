@@ -82,15 +82,21 @@ class User
      */
     public function doUpdateUser($userId, $saveDate)
     {
-        $where = [
+        $userWhere = [
             ['user_id', '=', $userId]
         ];
-        $userInfo = UserModel::findOne($where);
-        if(empty($userInfo))
+        $nameWhere = [
+            ['user_id', '<>', $userId],
+            ['user_name', '=', $saveDate['user_name']],
+        ];
+        
+        $otherUserInfo = UserModel::findOne($nameWhere);
+        $userInfo = UserModel::findOne($userWhere);
+        if(empty($userInfo) && !empty($otherUserInfo))
         {
             return false;
         }
-        $res = UserModel::updateOne($where, $saveDate);
+        $res = UserModel::updateOne($userWhere, $saveDate);
         if($res != false)
         {
             return true;
