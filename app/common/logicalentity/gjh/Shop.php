@@ -56,7 +56,7 @@ class Shop
         if(!empty($saveDate['shop_name']))
         {
             $nameWhere = [
-                ['shop_id', '<>', $goodsId],
+                ['shop_id', '<>', $shopId],
                 ['shop_name', '=', $saveDate['shop_name']],
                 ['is_del', '=', 0],
             ];
