@@ -40,8 +40,18 @@ class Goods
         $where = [
             ['goods_id', '=', $goodsId]
         ];
+        if(!empty($saveDate['goods_name']))
+        {
+            $nameWhere = [
+                ['goods_id', '<>', $goodsId],
+                ['goods_name', '=', $saveDate['goods_name']],
+                ['is_del', '=', 0],
+            ];
+            $otherGoodsInfo = GoodsModel::findOne($nameWhere);
+        }
+        
         $goodsInfo = GoodsModel::findOne($where);
-        if(empty($goodsInfo))
+        if(empty($goodsInfo) || !empty($otherGoodsInfo))
         {
             return false;
         }

@@ -53,8 +53,17 @@ class Shop
         $where = [
             ['shop_id', '=', $shopId]
         ];
+        if(!empty($saveDate['shop_name']))
+        {
+            $nameWhere = [
+                ['shop_id', '<>', $goodsId],
+                ['shop_name', '=', $saveDate['shop_name']],
+                ['is_del', '=', 0],
+            ];
+            $otherShopInfo = ShopModel::findOne($nameWhere);
+        }
         $shopInfo = ShopModel::findOne($where);
-        if(empty($shopInfo))
+        if(empty($shopInfo) || !empty($otherShopInfo))
         {
             return false;
         }
@@ -71,6 +80,15 @@ class Shop
      */
     public function doCreateShop($addInfo)
     {
+        $where = [
+            ['shop_name', '=', $addInfo['shop_name']],
+            ['is_del', '=', 0],
+        ];
+        $shopInfo = ShopModel::findOne($where);
+        if(!empty($shopInfo))
+        {
+            return false;
+        }
         if(ShopModel::addOne($addInfo))
         {
             return true;
