@@ -90,6 +90,7 @@ class User
             $nameWhere = [
                 ['user_id', '<>', $userId],
                 ['user_name', '=', $saveDate['user_name']],
+                ['is_del', '=', 0],
             ];
             $otherUserInfo = UserModel::findOne($nameWhere);
         }
