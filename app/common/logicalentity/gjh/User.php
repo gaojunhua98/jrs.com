@@ -95,6 +95,8 @@ class User
         }
         
         $userInfo = UserModel::findOne($userWhere);
+        var_dump($userInfo,$otherUserInfo);
+        die;
         if(empty($userInfo) && !empty($otherUserInfo))
         {
             return false;
