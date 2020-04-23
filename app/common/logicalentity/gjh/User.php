@@ -116,6 +116,7 @@ class User
     {
         $where = [
             ['user_name', '=', $addInfo['user_name']],
+            ['is_del', '=', 0],
         ];
         $userInfo = UserModel::findOne($where);
         if(!empty($userInfo))
