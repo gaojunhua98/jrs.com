@@ -586,12 +586,15 @@ class GjhController extends ControllerController
 		if(!empty($query))
 		{
 			$spuWhere = $this->getWhere($query);
-			$spuWhere[] = ['is_del', '=', 0];
-			$spuWhere[] = ['user_id', '=', $user_id];
-			$spuInfo = $goodsObj->doGetGoods($spuWhere);
-			$skuWhere[] = ['goods_id', '=', $spuInfo['goods_id']];
+			if(!empty($spuWhere))
+			{
+				$spuWhere[] = ['is_del', '=', 0];
+				$spuWhere[] = ['user_id', '=', $user_id];
+				$spuInfo = $goodsObj->doGetGoods($spuWhere);
+				$skuWhere[] = ['goods_id', '=', $spuInfo['goods_id']];
+			}
 		}
-		
+
 		$skuWhere[] = ['is_del', '=', 0];
 		$skuWhere[] = ['user_id', '=', $user_id];
 

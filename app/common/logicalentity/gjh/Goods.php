@@ -72,7 +72,8 @@ class Goods
      */
     public function doGetGoods($where)
     {
-        if($goodsInfo = GoodsModel::findOne($where))
+        $goodsInfo = GoodsModel::findOne($where);
+        if(!empty($goodsInfo))
         {
             return $goodsInfo;
         }

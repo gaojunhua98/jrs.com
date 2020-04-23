@@ -16,7 +16,10 @@ class ControllerController extends BaseController
 			}
 			foreach($query as $key => $value)
 			{
-				$where[] = [$key, 'LIKE', '%' . $value . '%'];
+				if(!empty($value))
+				{
+					$where[] = [$key, 'LIKE', '%' . $value . '%'];
+				}
 			}
         }
         return $where;
