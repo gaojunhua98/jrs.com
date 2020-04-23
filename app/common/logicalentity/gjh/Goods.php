@@ -49,7 +49,6 @@ class Goods
             ];
             $otherGoodsInfo = GoodsModel::findOne($nameWhere);
         }
-        
         $goodsInfo = GoodsModel::findOne($where);
         if(empty($goodsInfo) || !empty($otherGoodsInfo))
         {
@@ -69,6 +68,15 @@ class Goods
      */
     public function doCreateGoods($addInfo)
     {
+        $where = [
+            ['goods_name', '=', $addInfo['goods_name']],
+            ['is_del', '=', 0],
+        ];
+        $goodsInfo = GoodsModel::findOne($where);
+        if(!empty($goodsInfo))
+        {
+            return false;
+        }
         $addInfo['goods_attributes'] = json_encode($addInfo['goods_attributes']);
         if(GoodsModel::addOne($addInfo))
         {

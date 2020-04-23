@@ -53,8 +53,17 @@ class Depository
         $where = [
             ['depository_id', '=', $depositoryId]
         ];
+        if(!empty($saveDate['goods_name']))
+        {
+            $nameWhere = [
+                ['depository_id', '<>', $depositoryId],
+                ['depository_name', '=', $saveDate['depository_name']],
+                ['is_del', '=', 0],
+            ];
+            $otherDepositoryInfo = DepositoryModel::findOne($nameWhere);
+        }
         $depositoryInfo = DepositoryModel::findOne($where);
-        if(empty($depositoryInfo))
+        if(empty($depositoryInfo) || !empty($otherDepositoryInfo))
         {
             return false;
         }
@@ -71,6 +80,15 @@ class Depository
      */
     public function doCreateDepository($addInfo)
     {
+        $where = [
+            ['depository_name', '=', $addInfo['depository_name']],
+            ['is_del', '=', 0],
+        ];
+        $depositoryInfo = DepositoryModel::findOne($where);
+        if(!empty($depositoryInfo))
+        {
+            return false;
+        }
         if(DepositoryModel::addOne($addInfo))
         {
             return true;
