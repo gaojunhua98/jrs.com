@@ -85,12 +85,15 @@ class User
         $userWhere = [
             ['user_id', '=', $userId]
         ];
-        $nameWhere = [
-            ['user_id', 'neq', $userId],
-            ['user_name', '=', $saveDate['user_name']],
-        ];
+        if(!empty($saveDate['user_name']))
+        {
+            $nameWhere = [
+                ['user_id', 'neq', $userId],
+                ['user_name', '=', $saveDate['user_name']],
+            ];
+            $otherUserInfo = UserModel::findOne($nameWhere);
+        }
         
-        $otherUserInfo = UserModel::findOne($nameWhere);
         $userInfo = UserModel::findOne($userWhere);
         if(empty($userInfo) && !empty($otherUserInfo))
         {
