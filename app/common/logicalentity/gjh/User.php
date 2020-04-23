@@ -88,7 +88,7 @@ class User
         if(!empty($saveDate['user_name']))
         {
             $nameWhere = [
-                ['user_id', 'neq', $userId],
+                ['user_id', '<>', $userId],
                 ['user_name', '=', $saveDate['user_name']],
             ];
             $otherUserInfo = UserModel::findOne($nameWhere);
