@@ -569,6 +569,7 @@ class GjhController extends ControllerController
 	// 获取商品SKU列表
 	public function getGoodsSkuList()
 	{
+		$skuWhere = [];
 		$pageData = Page::getPageParameters();
 		$query = json_decode(RequestTool::getParameters('query'));
 		$user_id = json_decode(RequestTool::getParameters('user_id'));
@@ -580,12 +581,19 @@ class GjhController extends ControllerController
 	            'data' => []
 	        ]);
 		}
+		$goodsObj = new Goods();
 		$goodsSkuObj = new GoodsSku();
-		$where = $this->getWhere($query);
-		$where[] = ['is_del', '=', 0];
-		$where[] = ['user_id', '=', $user_id];
 
-		$list = $goodsSkuObj->doGetGoodsSkuList($where,$pageData);
+		$spuWhere = $this->getWhere($query);
+		$spuWhere[] = ['is_del', '=', 0];
+		$spuWhere[] = ['user_id', '=', $user_id];
+		$spuInfo = $goodsObj->doGetGoods($spuWhere);
+
+		$skuWhere[] = ['goods_id', '=', $spuInfo['goods_id']];
+		$skuWhere[] = ['is_del', '=', 0];
+		$skuWhere[] = ['user_id', '=', $user_id];
+
+		$list = $goodsSkuObj->doGetGoodsSkuList($skuWhere,$pageData);
 		if($list){
 			return  json([
 	            'code' => 1,

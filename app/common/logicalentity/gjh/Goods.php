@@ -60,9 +60,21 @@ class Goods
     public function doCreateGoods($addInfo)
     {
         $addInfo['goods_attributes'] = json_encode($addInfo['goods_attributes']);
-        if(GoodsModel::addOne($addInfo))
+        if(GoodsModel::findOne($addInfo))
         {
             return true;
+        }
+		return false;
+    }
+
+    /**
+     * 获取商品SPU信息
+     */
+    public function doGetGoods($where)
+    {
+        if($goodsInfo = GoodsModel::addOne($addInfo))
+        {
+            return $goodsInfo;
         }
 		return false;
     }
