@@ -60,7 +60,7 @@ class Goods
     public function doCreateGoods($addInfo)
     {
         $addInfo['goods_attributes'] = json_encode($addInfo['goods_attributes']);
-        if(GoodsModel::findOne($addInfo))
+        if(GoodsModel::addOne($addInfo))
         {
             return true;
         }
@@ -72,7 +72,7 @@ class Goods
      */
     public function doGetGoods($where)
     {
-        if($goodsInfo = GoodsModel::addOne($addInfo))
+        if($goodsInfo = GoodsModel::findOne($where))
         {
             return $goodsInfo;
         }
